@@ -1,0 +1,40 @@
+<countrys>
+	<argentina>
+		<pj>3</pj><!-- partidos jugados en todo el torneo-->
+		<pg>1</pg><!-- partidos ganados en zona de grupo-->
+		<pe>0</pe><!-- partidos empatados en zona de grupo-->
+		<pp>2</pp><!-- partidos perdidos en zona de grupo-->
+		<gf>3</gf><!-- goles a favor en zona de grupo-->
+		<gc>4</gc><!-- goles en contra en todo en zona de grupo-->
+		<rival>bosnia</rival><!-- siguiente rival-->
+		<local>true</local><!-- local o visitante-->
+		<estadio>maracana</estadio><!-- estadio del siguiente partido-->
+		<horario>HHMM</horario><!-- horario en UTC    MUY IMPORTANTE!!-->
+		<fecha>MMDD</fecha><!-- fecha del partido -->
+		<octavos>4</octavos><!-- posición en la llave de octavos(1~8). Si no clasifica = 0   -->
+		<cuartos>2</cuartos><!-- posición en la llave de cuartos de final(1~4). Si no clasifica = 0   -->
+		<semi>1</semi><!-- posición en la llave de semifinal(1~2). Si no clasifica = 0   -->
+		<final>1</final><!-- Si clasifica = 1. Si no clasifica = 0   -->
+		
+	</argentina>
+	<bosnia>
+		<pj>3</pj>
+		<pg>1</pg>
+		<pe>0</pe>
+		<pp>2</pp>
+		<gf>3</gf>
+		<gc>4</gc>
+		<rival>argentina</rival>
+		<local>false</local>
+		<estadio>maracana</estadio>
+		<horario>HHMM</horario>
+		<fecha>MMDD</fecha>
+		<octavos>4</octavos>
+		<cuartos>2</cuartos>
+		<semi>1</semi>
+		<final>1</final>
+		
+	</bosnia>
+	
+	
+</countrys>

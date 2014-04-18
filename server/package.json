@@ -1,0 +1,24 @@
+{
+  "name": "worldcup-server",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "test": "simpleunit test"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "ejs": "1.0.0",
+    "ejs-locals": "1.0.2",
+    "mongodb": "1.4.0",
+    "simpleflow": "0.0.1",
+    "simpleasync": "0.0.3"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "simpleunit": "0.0.4"
+  }
+}
