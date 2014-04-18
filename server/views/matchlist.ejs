@@ -1,0 +1,16 @@
+<% layout('layout') -%>
+
+<div class="row">
+<table class="table-striped table-bordered">
+    <tr>
+        <th>Local Team</th>
+        <th>Away Team</th>
+    </tr>
+<% items.forEach(function (item) { %>
+    <tr>
+        <td><%= item.local %></td>
+        <td><%= item.away %></td>
+    </tr>
+<% }); %>
+</table>
+</div>

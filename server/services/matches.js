@@ -15,7 +15,31 @@ function getById(id, cb) {
 };
 
 function getList(cb) {
-    cb(null, matches.slice());
+    var result = [];
+    
+    matches.forEach(function (match) {
+        result.push(clone(match));
+    });
+    
+    cb(null, result);
+};
+
+function addList(list, cb) {
+    var k = 0;
+    var l = list.length;
+    
+    doStep();
+    
+    function doStep() {
+        if (k >= l) {
+            cb(null, null);
+            return;
+        }
+        
+        var item = list[k++];
+        
+        add(item, function () { setImmediate(function () { doStep(); }) });
+    }
 };
 
 function clone(obj) {
@@ -27,9 +51,17 @@ function clone(obj) {
     return newobj;
 }
 
+function clear(cb) {
+    maxid = 0;
+    matches = [];
+    cb(null, null);
+}
+
 module.exports = {
+    clear: clear,
     add: add,
     getList: getList,
+    addList: addList,
     getById: getById
 }
 

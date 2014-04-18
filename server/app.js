@@ -9,6 +9,9 @@ var engine = require('ejs-locals')
 var http = require('http');
 var path = require('path');
 
+var matches = require('./routes/matches');
+var smatches = require('./services/matches');
+
 var app = express();
 
 app.engine('ejs', engine);
@@ -31,7 +34,23 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/match', matches.index);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+smatches.addList(require('./matches.json'), function (err, data) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+
+    smatches.getList(function (err, data) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        
+        http.createServer(app).listen(app.get('port'), function(){
+          console.log('Express server listening on port ' + app.get('port'));
+        });
+    });
 });
+
