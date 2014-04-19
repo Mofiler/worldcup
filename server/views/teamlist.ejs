@@ -1,0 +1,24 @@
+<% layout('layout') -%>
+
+<div class="row">
+<table class="table-striped table-bordered">
+    <tr>
+        <th>Team</th>
+        <th>Matches</th>
+        <th>Wins</th>
+        <th>Ties</th>
+        <th>Losts</th>
+        <th>Goals</th>
+    </tr>
+<% items.forEach(function (item) { %>
+    <tr>
+        <td><%= item.team %></td>
+        <td><%= item.matches %></td>
+        <td><%= item.wins %></td>
+        <td><%= item.ties %></td>
+        <td><%= item.losts %></td>
+        <td><%= item.goals %></td>
+    </tr>
+<% }); %>
+</table>
+</div>

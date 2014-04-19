@@ -10,6 +10,7 @@ var http = require('http');
 var path = require('path');
 
 var matches = require('./routes/matches');
+var teams = require('./routes/teams');
 var smatches = require('./services/matches');
 
 var app = express();
@@ -35,6 +36,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/match', matches.index);
+app.get('/team', teams.index);
 
 smatches.addList(require('./matches.json'), function (err, data) {
     if (err) {
