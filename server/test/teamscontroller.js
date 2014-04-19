@@ -35,10 +35,45 @@ exports['get index'] = function (test) {
             test.ok(model.items[0].hasOwnProperty('losts'));
             test.ok(model.items[0].hasOwnProperty('ties'));
             test.ok(model.items[0].hasOwnProperty('goals'));
+            test.ok(model.items[0].hasOwnProperty('owngoals'));
             test.done();
         }
     };
     
     controller.index(req, res);
 };
+
+exports['get api'] = function (test) {
+    test.async();
+    
+    var req = {};
+    var res = {
+        status: function(status) {
+            test.equal(status, 200);
+        },
+        set: function (name, value) {
+            test.equal(name, 'Content-Type');
+            test.equal(value, 'text/xml');
+        },
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'teamapi');
+            test.ok(model);
+            test.ok(model.items);
+            test.ok(Array.isArray(model.items));
+            test.ok(model.items.length);
+            test.ok(model.items[0].team);
+            test.ok(model.items[0].hasOwnProperty('matches'));
+            test.ok(model.items[0].hasOwnProperty('wins'));
+            test.ok(model.items[0].hasOwnProperty('losts'));
+            test.ok(model.items[0].hasOwnProperty('ties'));
+            test.ok(model.items[0].hasOwnProperty('goals'));
+            test.ok(model.items[0].hasOwnProperty('owngoals'));
+            test.done();
+        }
+    };
+    
+    controller.api(req, res);
+};
+
 

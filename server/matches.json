@@ -58,5 +58,65 @@
         "time": "2000",
         "stage": "Group A",
         "venue": "Nacional"
+    },
+    {
+        "local": "Spain",
+        "away": "Netherlands",
+        "localgoals": 2,
+        "awaygoals": 0,
+        "date": "20140613",
+        "time": "1900",
+        "stage": "Group B",
+        "venue": "Arena Fonte Nova"
+    },
+    {
+        "local": "Chile",
+        "away": "Australia",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140613",
+        "time": "2200",
+        "stage": "Group B",
+        "venue": "Arena Pantanal"
+    },
+    {
+        "local": "Australia",
+        "away": "Netherlands",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140618",
+        "time": "1600",
+        "stage": "Group B",
+        "venue": "Estadio Beira-Rio"
+    },
+    {
+        "local": "Spain",
+        "away": "Chile",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140618",
+        "time": "1900",
+        "stage": "Group B",
+        "venue": "Estadio do Maracana"
+    },
+    {
+        "local": "Australia",
+        "away": "Spain",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140623",
+        "time": "1600",
+        "stage": "Group B",
+        "venue": "Arena da Baixada"
+    },
+    {
+        "local": "Netherlands",
+        "away": "Chile",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140623",
+        "time": "1600",
+        "stage": "Group B",
+        "venue": "Arena Corinthians"
     }
 ]

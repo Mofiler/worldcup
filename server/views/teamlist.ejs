@@ -9,6 +9,7 @@
         <th>Ties</th>
         <th>Losts</th>
         <th>Goals</th>
+        <th>Own Goals</th>
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
@@ -18,6 +19,7 @@
         <td><%= item.ties %></td>
         <td><%= item.losts %></td>
         <td><%= item.goals %></td>
+        <td><%= item.owngoals %></td>
     </tr>
 <% }); %>
 </table>

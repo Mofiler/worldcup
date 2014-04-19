@@ -37,6 +37,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/match', matches.index);
 app.get('/team', teams.index);
+app.get('/api/team', teams.api);
 
 smatches.addList(require('./matches.json'), function (err, data) {
     if (err) {

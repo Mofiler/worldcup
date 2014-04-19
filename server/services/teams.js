@@ -34,7 +34,7 @@ function processMatch(teams, match) {
 
 function processMatchTeam(teams, teamname, match, islocal) {
     if (!teams[teamname])
-        teams[teamname] = { team: teamname, wins: 0, losts: 0, ties: 0, matches: 0, goals: 0 };
+        teams[teamname] = { team: teamname, wins: 0, losts: 0, ties: 0, matches: 0, goals: 0, owngoals: 0 };
         
     var team = teams[teamname];
     
@@ -47,6 +47,7 @@ function processMatchTeam(teams, teamname, match, islocal) {
             team.ties += 1;
             
         team.goals += match.localgoals;
+        team.owngoals += match.awaygoals;
     }
     else {
         if (match.localgoals > match.awaygoals)
@@ -57,6 +58,7 @@ function processMatchTeam(teams, teamname, match, islocal) {
             team.ties += 1;
             
         team.goals += match.awaygoals;
+        team.owngoals += match.localgoals;
     }
     
     team.matches += 1;

@@ -1,0 +1,12 @@
+<countries>
+<% items.forEach(function (item) { %>
+    <<%= item.team %>>
+        <pj><%= item.matches %></pj>
+        <pg><%= item.wins %></pg>
+        <pe><%= item.ties %></pe>
+        <pp><%= item.losts %></pp>
+        <gf><%= item.goals %></gf>
+        <gc><%= item.owngoals %></gc>
+    </<%= item.team %>>
+<% }); %>
+</countries>
