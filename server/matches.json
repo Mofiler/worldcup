@@ -1,10 +1,62 @@
 [
     {
-        "local": "argentina",
-        "away": "brazil"
+        "local": "Brazil",
+        "away": "Croatia",
+        "localgoals": 2,
+        "awaygoals": 1,
+        "date": "20140612",
+        "time": "2000",
+        "stage": "Group A",
+        "venue": "Arena Corinthians"
     },
     {
-        "local": "bosnia",
-        "away": "germany"
+        "local": "Mexico",
+        "away": "Cameroon",
+        "localgoals": 1,
+        "awaygoals": 3,
+        "date": "20140613",
+        "time": "1600",
+        "stage": "Group A",
+        "venue": "Estadio das Dunas"
+    },
+    {
+        "local": "Brazil",
+        "away": "Mexico",
+        "localgoals": 2,
+        "awaygoals": 3,
+        "date": "20140617",
+        "time": "1900",
+        "stage": "Group A",
+        "venue": "Estadio Castelao"
+    },
+    {
+        "local": "Cameroon",
+        "away": "Croatia",
+        "localgoals": 5,
+        "awaygoals": 2,
+        "date": "20140618",
+        "time": "2200",
+        "stage": "Group A",
+        "venue": "Arena Amazonia"
+    },
+    {
+        "local": "Croatia",
+        "away": "Mexico",
+        "localgoals": 3,
+        "awaygoals": 4,
+        "date": "20140623",
+        "time": "2000",
+        "stage": "Group A",
+        "venue": "Arena Pernambuco"
+    },
+    {
+        "local": "Cameroon",
+        "away": "Brazil",
+        "localgoals": 3,
+        "awaygoals": 0,
+        "date": "20140623",
+        "time": "2000",
+        "stage": "Group A",
+        "venue": "Nacional"
     }
 ]

@@ -32,6 +32,12 @@ exports['get index'] = function (test) {
             test.ok(model.items[0].id);
             test.ok(model.items[0].local);
             test.ok(model.items[0].away);
+            test.ok(model.items[0].localgoals);
+            test.ok(model.items[0].awaygoals);
+            test.ok(model.items[0].date);
+            test.ok(model.items[0].time);
+            test.ok(model.items[0].venue);
+            test.ok(model.items[0].stage);
             test.done();
         }
     };

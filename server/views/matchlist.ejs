@@ -4,12 +4,24 @@
 <table class="table-striped table-bordered">
     <tr>
         <th>Local Team</th>
+        <th>Local Goals</th>
         <th>Away Team</th>
+        <th>Away Goals</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Stage</th>
+        <th>Venue</th>
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
         <td><%= item.local %></td>
+        <td><%= item.localgoals %></td>
         <td><%= item.away %></td>
+        <td><%= item.awaygoals %></td>
+        <td><%= item.date %></td>
+        <td><%= item.time %></td>
+        <td><%= item.stage %></td>
+        <td><%= item.venue %></td>
     </tr>
 <% }); %>
 </table>
