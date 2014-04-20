@@ -19,8 +19,11 @@ function api(req, res) {
     matches.getList(options, function (err, list) {
         if (err)
             res.render('error', { error: err });
-        else
+        else {
+            res.status(200);
+            res.set('Content-Type', 'text/xml');
             res.render('matchapi', { items: list });
+        }
     });
 }
 

@@ -39,8 +39,8 @@ app.get('/', routes.index);
 app.get('/match', matches.index);
 app.get('/team', teams.index);
 app.get('/api/team', teams.api);
-app.get('/api/match', match.api);
-app.get('/api/match/date/:date', match.api);
+app.get('/api/match', matches.api);
+app.get('/api/match/date/:date', matches.api);
 
 args.define('t', 'time', null, 'Current time');
 args.define('d', 'date', null, 'Current date');
