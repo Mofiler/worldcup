@@ -24,7 +24,14 @@ function getList(cb) {
     cb(null, result);
 };
 
-function addList(list, cb) {
+function addList(list, options, cb) {
+    if (options && !cb && typeof options == 'function') {
+        cb = options;
+        options = null;
+    }
+    
+    options = options || { };
+    
     var k = 0;
     var l = list.length;
     
@@ -36,7 +43,12 @@ function addList(list, cb) {
             return;
         }
         
-        var item = list[k++];
+        var item = clone(list[k++]);
+        
+        if (item.date && options.date && item.date >= options.date) {
+            delete item.localgoals;
+            delete item.awaygoals;
+        }
         
         add(item, function () { setImmediate(function () { doStep(); }) });
     }
