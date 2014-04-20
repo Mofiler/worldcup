@@ -14,10 +14,20 @@ function getById(id, cb) {
     cb(null, matches[id]);
 };
 
-function getList(cb) {
+function getList(options, cb) {
+    if (typeof options == 'function' && !cb) {
+        cb = options;
+        options = null;
+    }
+    
+    options = options || { };
+    
     var result = [];
     
     matches.forEach(function (match) {
+        if (options.date && match.date != options.date)
+            return;
+            
         result.push(clone(match));
     });
     

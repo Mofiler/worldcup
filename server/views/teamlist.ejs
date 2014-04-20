@@ -10,6 +10,11 @@
         <th>Losts</th>
         <th>Goals</th>
         <th>Own Goals</th>
+        <th>Next</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Venue</th>
+        <th>Local</th>
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
@@ -20,6 +25,19 @@
         <td><%= item.losts %></td>
         <td><%= item.goals %></td>
         <td><%= item.owngoals %></td>
+        <% if (item.nextmatch) { %>
+        <td><%= item.nextmatch.local == item.team ? item.nextmatch.away : item.nextmatch.local %></td>
+        <td><%= item.nextmatch.date %></td>
+        <td><%= item.nextmatch.time %></td>
+        <td><%= item.nextmatch.venue %></td>
+        <td><%= item.nextmatch.local == item.team ? 'Yes': 'No' %></td>
+        <% } else { %>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <% } %>
     </tr>
 <% }); %>
 </table>

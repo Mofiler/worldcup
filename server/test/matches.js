@@ -223,6 +223,163 @@ exports['load list using late date/time and get list'] = function (test) {
 };
 
 
+exports['load list and get list'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil' },
+        { local: 'bosnia', away: 'germany' }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 2);
+        
+        test.equal(data[0].local, 'argentina');
+        test.equal(data[0].away, 'brazil');
+        test.equal(data[1].local, 'bosnia');
+        test.equal(data[1].away, 'germany');
+        test.done();
+    }
+    
+    flow.run();
+};
+
+exports['load list using date and get list'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, { date: '20140611' }, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 2);
+        
+        test.equal(data[0].local, 'argentina');
+        test.equal(data[0].away, 'brazil');
+        test.equal(data[0].localgoals, 1);
+        test.equal(data[0].awaygoals, 2);
+        test.equal(data[1].local, 'bosnia');
+        test.equal(data[1].away, 'germany');
+        test.ok(!data[1].hasOwnProperty('localgoals'));
+        test.ok(!data[1].hasOwnProperty('awaygoals'));
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+exports['load list using date/time and get list'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, { date: '20140615' }, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 2);
+        
+        test.equal(data[0].local, 'argentina');
+        test.equal(data[0].away, 'brazil');
+        test.equal(data[0].localgoals, 1);
+        test.equal(data[0].awaygoals, 2);
+        test.equal(data[1].local, 'bosnia');
+        test.equal(data[1].away, 'germany');
+        test.ok(!data[1].hasOwnProperty('localgoals'));
+        test.ok(!data[1].hasOwnProperty('awaygoals'));
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+
+exports['get list by date'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = require('../matches.json');
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList({ date: '20140613' }, next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 3);
+
+        data.forEach(function (match) {
+            test.equal(match.date, '20140613');
+        });
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+
 
 
 

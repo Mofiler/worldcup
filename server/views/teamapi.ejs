@@ -7,6 +7,13 @@
         <pp><%= item.losts %></pp>
         <gf><%= item.goals %></gf>
         <gc><%= item.owngoals %></gc>
+        <% if (item.nextmatch) { %>
+        <rival><%= item.nextmatch.local == item.team ? item.nextmatch.away : item.nextmatch.local %></rival>
+        <local><%= item.nextmatch.local == item.team ? 'Yes': 'No' %></local>
+        <estadio><%= item.nextmatch.venue %></estadio>
+        <fecha><%= item.nextmatch.date %></fecha>
+        <hora><%= item.nextmatch.time %></hora>
+        <% } %>
     </<%= item.team %>>
 <% }); %>
 </countries>

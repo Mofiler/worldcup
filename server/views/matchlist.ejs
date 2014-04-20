@@ -15,9 +15,9 @@
 <% items.forEach(function (item) { %>
     <tr>
         <td><%= item.local %></td>
-        <td><%= item.localgoals %></td>
+        <td><%= item.localgoals == null ? '' : item.localgoals %></td>
         <td><%= item.away %></td>
-        <td><%= item.awaygoals %></td>
+        <td><%= item.awaygoals == null ? '' : item.awaygoals %></td>
         <td><%= item.date %></td>
         <td><%= item.time %></td>
         <td><%= item.stage %></td>

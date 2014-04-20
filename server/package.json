@@ -12,7 +12,8 @@
     "ejs-locals": "1.0.2",
     "mongodb": "1.4.0",
     "simpleflow": "0.0.1",
-    "simpleasync": "0.0.3"
+    "simpleasync": "0.0.3",
+    "simpleargs": "0.0.1"
   },
   "engines": {
     "node": "0.10.x",

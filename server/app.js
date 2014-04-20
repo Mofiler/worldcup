@@ -8,6 +8,7 @@ var routes = require('./routes');
 var engine = require('ejs-locals')
 var http = require('http');
 var path = require('path');
+var args = require('simpleargs');
 
 var matches = require('./routes/matches');
 var teams = require('./routes/teams');
@@ -39,7 +40,12 @@ app.get('/match', matches.index);
 app.get('/team', teams.index);
 app.get('/api/team', teams.api);
 
-smatches.addList(require('./matches.json'), function (err, data) {
+args.define('t', 'time', null, 'Current time');
+args.define('d', 'date', null, 'Current date');
+
+var options = args.process(process.argv);
+
+smatches.addList(require('./matches.json'), options, function (err, data) {
     if (err) {
         console.log(err);
         return;
