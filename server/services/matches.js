@@ -45,7 +45,11 @@ function addList(list, options, cb) {
         
         var item = clone(list[k++]);
         
-        if (item.date && options.date && item.date >= options.date) {
+        if (item.date && options.date && item.date > options.date) {
+            delete item.localgoals;
+            delete item.awaygoals;
+        }
+        else if (item.date && options.date && item.date == options.date && (!options.time || item.time >= options.time)) {
             delete item.localgoals;
             delete item.awaygoals;
         }

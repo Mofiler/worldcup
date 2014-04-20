@@ -101,8 +101,8 @@ exports['load list using date and get list'] = function (test) {
     var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
     
     var list = [
-        { local: 'argentina', away: 'brazil', date: '20140610', localgoals: 1, awaygoals: 2 },
-        { local: 'bosnia', away: 'germany', date: '20140620', localgoals: 2, awaygoals: 3 }
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
     ];
     
     function clear(data, next) {
@@ -136,5 +136,95 @@ exports['load list using date and get list'] = function (test) {
     
     flow.run();
 };
+
+exports['load list using date/time and get list'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, { date: '20140620', time: '1800' }, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 2);
+        
+        test.equal(data[0].local, 'argentina');
+        test.equal(data[0].away, 'brazil');
+        test.equal(data[0].localgoals, 1);
+        test.equal(data[0].awaygoals, 2);
+        test.equal(data[1].local, 'bosnia');
+        test.equal(data[1].away, 'germany');
+        test.ok(!data[1].hasOwnProperty('localgoals'));
+        test.ok(!data[1].hasOwnProperty('awaygoals'));
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+
+exports['load list using late date/time and get list'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, { date: '20140620', time: '2100' }, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.ok(Array.isArray(data));
+        test.equal(data.length, 2);
+        
+        test.equal(data[0].local, 'argentina');
+        test.equal(data[0].away, 'brazil');
+        test.equal(data[0].localgoals, 1);
+        test.equal(data[0].awaygoals, 2);
+        test.equal(data[1].local, 'bosnia');
+        test.equal(data[1].away, 'germany');
+        test.ok(data[1].hasOwnProperty('localgoals'));
+        test.ok(data[1].hasOwnProperty('awaygoals'));
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+
+
+
+
 
 
