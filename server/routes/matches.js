@@ -10,6 +10,21 @@ function index(req, res) {
     });
 }
 
+function api(req, res) {
+    var options = { };
+    
+    if (req.params && req.params.date)
+        options.date = req.params.date;
+    
+    matches.getList(options, function (err, list) {
+        if (err)
+            res.render('error', { error: err });
+        else
+            res.render('matchapi', { items: list });
+    });
+}
+
 module.exports = {
-    index: index
+    index: index,
+    api: api
 };
