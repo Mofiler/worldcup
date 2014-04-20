@@ -37,31 +37,36 @@ function processMatchTeam(teams, teamname, match, islocal) {
         teams[teamname] = { team: teamname, wins: 0, losts: 0, ties: 0, matches: 0, goals: 0, owngoals: 0 };
         
     var team = teams[teamname];
-    
-    if (islocal) {
-        if (match.localgoals > match.awaygoals)
-            team.wins += 1;
-        else if (match.localgoals < match.awaygoals)
-            team.losts += 1;
-        else
-            team.ties += 1;
-            
-        team.goals += match.localgoals;
-        team.owngoals += match.awaygoals;
+  
+    if (match.hasOwnProperty('localgoals') && match.hasOwnProperty('awaygoals')) {
+        if (islocal) {
+            if (match.localgoals > match.awaygoals)
+                team.wins += 1;
+            else if (match.localgoals < match.awaygoals)
+                team.losts += 1;
+            else
+                team.ties += 1;
+                
+            team.goals += match.localgoals;
+            team.owngoals += match.awaygoals;
+        }
+        else {
+            if (match.localgoals > match.awaygoals)
+                team.losts += 1;
+            else if (match.localgoals < match.awaygoals)
+                team.wins += 1;
+            else
+                team.ties += 1;
+                
+            team.goals += match.awaygoals;
+            team.owngoals += match.localgoals;
+        }
+        team.matches += 1;
     }
     else {
-        if (match.localgoals > match.awaygoals)
-            team.losts += 1;
-        else if (match.localgoals < match.awaygoals)
-            team.wins += 1;
-        else
-            team.ties += 1;
-            
-        team.goals += match.awaygoals;
-        team.owngoals += match.localgoals;
+        if (!team.hasOwnProperty('nextmatch') || team.nextmatch.date > match.date || (team.nextmatch.date == match.date && team.nextmatch.time > match.time))
+            team.nextmatch = match;
     }
-    
-    team.matches += 1;
 }
 
 module.exports = {
