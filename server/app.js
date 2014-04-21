@@ -18,6 +18,7 @@ var config = require('./config.json');
 
 var matches = require('./routes/matches');
 var teams = require('./routes/teams');
+var databases = require('./routes/databases');
 
 // Services
 
@@ -55,6 +56,13 @@ app.get('/api/team', teams.api);
 app.get('/api/match', matches.api);
 app.get('/api/match/date/:date', matches.api);
 
+app.get('/admin/database', databases.index);
+app.get('/admin/database/usedb/:dbname', databases.usedb);
+app.get('/admin/database/cleardb/:dbname', databases.cleardb);
+app.post('/admin/database/createdb', databases.createdb);
+app.get('/admin/database/usemem', databases.usemem);
+app.get('/admin/database/clearmem', databases.clearmem);
+
 args.define('t', 'time', null, 'Current time');
 args.define('d', 'date', null, 'Current date');
 
@@ -63,6 +71,10 @@ var options = args.process(process.argv);
 mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, function (err, newdb) {
     if (err)
         console.log(err);
+    else {
+        // smatches.useDatabase(newdb);
+        databases.useDatabase(newdb);
+    }
 
     smatches.addList(require('./matches.json'), options, function (err, data) {
         if (err) {
