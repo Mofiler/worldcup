@@ -1,0 +1,7 @@
+{
+    "database": "worldcup",
+    "mongodb": {
+        "host": "localhost",
+        "port": 27017
+    }
+}

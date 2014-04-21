@@ -10,9 +10,22 @@ var http = require('http');
 var path = require('path');
 var args = require('simpleargs');
 
+// Configuration
+
+var config = require('./config.json');
+
+// Controllers
+
 var matches = require('./routes/matches');
 var teams = require('./routes/teams');
+
+// Services
+
 var smatches = require('./services/matches');
+
+// MongoDB
+
+var mongodb = require('./libs/mongodb');
 
 var app = express();
 
@@ -47,21 +60,25 @@ args.define('d', 'date', null, 'Current date');
 
 var options = args.process(process.argv);
 
-smatches.addList(require('./matches.json'), options, function (err, data) {
-    if (err) {
+mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, function (err, newdb) {
+    if (err)
         console.log(err);
-        return;
-    }
 
-    smatches.getList(function (err, data) {
+    smatches.addList(require('./matches.json'), options, function (err, data) {
         if (err) {
             console.log(err);
             return;
         }
-        
-        http.createServer(app).listen(app.get('port'), function(){
-          console.log('Express server listening on port ' + app.get('port'));
+
+        smatches.getList(function (err, data) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            
+            http.createServer(app).listen(app.get('port'), function(){
+              console.log('Express server listening on port ' + app.get('port'));
+            });
         });
     });
 });
-
