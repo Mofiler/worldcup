@@ -5,6 +5,8 @@ var list = require('../matches.json');
 
 exports['load data'] = function (test) {
     test.async();
+
+    matches.useMemory();
     
     matches.clear(function (err, data) {
         test.ok(!err);
