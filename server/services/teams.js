@@ -67,6 +67,32 @@ function processMatchTeam(teams, teamname, match, islocal) {
         if (!team.hasOwnProperty('nextmatch') || team.nextmatch.date > match.date || (team.nextmatch.date == match.date && team.nextmatch.time > match.time))
             team.nextmatch = match;
     }
+    
+    var nmatch = 1;
+    
+    if (match.stage == 'Second Round')
+        if (islocal)
+            team.secondround = nmatch;
+        else
+            team.secondround = nmatch + 8;
+    
+    if (match.stage == 'Quarterfinals')
+        if (islocal)
+            team.quarterfinals = nmatch;
+        else
+            team.quarterfinals = nmatch + 4;
+    
+    if (match.stage == 'Semifinals')
+        if (islocal)
+            team.semifinals = nmatch;
+        else
+            team.semifinals = nmatch + 2;
+    
+    if (match.stage == 'Finals')
+        if (islocal)
+            team.finals = nmatch;
+        else
+            team.finals = nmatch + 1;
 }
 
 module.exports = {
