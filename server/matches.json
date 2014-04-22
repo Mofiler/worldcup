@@ -118,5 +118,35 @@
         "time": "1600",
         "stage": "Group B",
         "venue": "Arena Corinthians"
+    },
+    {
+        "local": "Netherlands",
+        "away": "Chile",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140625",
+        "time": "1600",
+        "stage": "Second Round",
+        "venue": "Arena Corinthians"
+    },
+    {
+        "local": "Australia",
+        "away": "Spain",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140627",
+        "time": "1600",
+        "stage": "Quarterfinals",
+        "venue": "Arena da Baixada"
+    },
+    {
+        "local": "Spain",
+        "away": "Chile",
+        "localgoals": 1,
+        "awaygoals": 1,
+        "date": "20140628",
+        "time": "1900",
+        "stage": "Semifinals",
+        "venue": "Estadio do Maracana"
     }
 ]

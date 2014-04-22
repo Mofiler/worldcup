@@ -34,7 +34,7 @@ function processMatch(teams, match) {
 
 function processMatchTeam(teams, teamname, match, islocal) {
     if (!teams[teamname])
-        teams[teamname] = { team: teamname, wins: 0, losts: 0, ties: 0, matches: 0, goals: 0, owngoals: 0 };
+        teams[teamname] = { team: teamname, wins: 0, losts: 0, ties: 0, matches: 0, goals: 0, owngoals: 0, secondround: 0, quarterfinals: 0, semifinals: 0, finals: 0 };
         
     var team = teams[teamname];
   

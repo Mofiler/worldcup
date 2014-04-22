@@ -69,6 +69,10 @@ exports['get api'] = function (test) {
             test.ok(model.items[0].hasOwnProperty('ties'));
             test.ok(model.items[0].hasOwnProperty('goals'));
             test.ok(model.items[0].hasOwnProperty('owngoals'));
+            test.ok(model.items[0].hasOwnProperty('secondround'));
+            test.ok(model.items[0].hasOwnProperty('quarterfinals'));
+            test.ok(model.items[0].hasOwnProperty('semifinals'));
+            test.ok(model.items[0].hasOwnProperty('finals'));
             test.done();
         }
     };

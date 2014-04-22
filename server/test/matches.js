@@ -6,6 +6,17 @@ function errorfn(err) {
     console.log(err);
 }
 
+exports['clear data'] = function (test) {
+    test.async();
+
+    matches.useMemory();
+    
+    matches.clear(function (err, data) {
+        test.ok(!err);
+        test.done();
+    });
+};
+
 exports['get empty list'] = function (test) {
     test.async();
     matches.getList(function (err, list) {
