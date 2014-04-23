@@ -62,8 +62,10 @@ app.get('/admin/database', databases.index);
 app.get('/admin/database/usedb/:dbname', databases.usedb);
 app.get('/admin/database/cleardb/:dbname', databases.cleardb);
 app.post('/admin/database/createdb', databases.createdb);
+app.get('/admin/database/loaddb/:dbname', databases.loaddb);
 app.get('/admin/database/usemem', databases.usemem);
 app.get('/admin/database/clearmem', databases.clearmem);
+app.get('/admin/database/loadmem', databases.loadmem);
 
 args.define('t', 'time', null, 'Current time');
 args.define('d', 'date', null, 'Current date');

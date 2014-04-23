@@ -72,6 +72,41 @@ exports['Clear database'] = function (test) {
     databases.cleardb(req, res);
 };
 
+exports['Load database'] = function (test) {
+    test.async();
+    
+    var req = {
+        params: {
+            dbname: config.database + '-test'
+        }
+    }
+    
+    var res = {
+        render: function (name, model) {
+            test.equal(name, 'databaselist');
+            test.ok(model);
+            test.equal(model.title, 'Databases');
+            test.equal(model.currentdbname, config.database + '-test');
+            test.ok(model.items);
+            test.ok(Array.isArray(model.items));
+            test.ok(model.items.length > 0);
+            
+            matches.getList(step2);
+        }
+    };
+    
+    function step2(err, items) {
+        test.equal(err, null);
+        test.ok(items);
+        test.ok(Array.isArray(items));
+        test.ok(items.length);
+        
+        test.done();
+    }
+    
+    databases.loaddb(req, res);
+};
+
 exports["Close database"] = function (test) {
     test.async();
     

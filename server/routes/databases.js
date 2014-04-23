@@ -83,9 +83,18 @@ function usemem(req, res) {
 }
 
 function clearmem(req, res) {
-    matches.clearMemory();
+    matches.clear(function() {
+        index(req,res);
+    });
+}
+
+function loadmem(req, res) {
+    var inmemory = matches.useMemory();
+    var list = require('../matches.json');
     
-    index(req,res);
+    matches.addList(list, function (err, data) {        
+        index(req,res);
+    });;
 }
 
 function cleardb(req, res) {
@@ -98,6 +107,41 @@ function cleardb(req, res) {
         useDatabase(newdb);
         
         matches.clear(next);
+    };
+    
+    function step2(result, next) {
+        next(null, null);
+    }
+    
+    function step3(result, next) {
+        if (!original || original == req.params.dbname) {
+            index(req, res);
+            return;
+        }
+
+        openDatabase(original, next);
+    }
+    
+    function step4(db, next) {
+        matches.useDatabase(db);
+        useDatabase(db);
+        
+        index(req, res);
+    }
+}
+
+function loaddb(req, res) {
+    var original = mongodb.getCurrentDatabaseName();
+    
+    sf.createFlow([openDatabase, step1, step2, step3, step4], errorFn(res)).run(req.params.dbname);
+
+    function step1(newdb, next) {
+        matches.useDatabase(newdb);
+        useDatabase(newdb);
+        
+        var list = require('../matches.json');
+        
+        matches.addList(list, next);
     };
     
     function step2(result, next) {
@@ -126,8 +170,10 @@ module.exports = {
     index: index,
     usedb: usedb,
     cleardb: cleardb,
+    loaddb: loaddb,
     createdb: createdb,
     clearmem: clearmem,
+    loadmem: loadmem,
     usemem: usemem
 };
 
