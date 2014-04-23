@@ -127,7 +127,8 @@
         "date": "20140625",
         "time": "1600",
         "stage": "Second Round",
-        "venue": "Arena Corinthians"
+        "venue": "Arena Corinthians",
+        "match": 1
     },
     {
         "local": "Australia",
@@ -137,7 +138,8 @@
         "date": "20140627",
         "time": "1600",
         "stage": "Quarterfinals",
-        "venue": "Arena da Baixada"
+        "venue": "Arena da Baixada",
+        "match": 4
     },
     {
         "local": "Spain",
@@ -147,6 +149,7 @@
         "date": "20140628",
         "time": "1900",
         "stage": "Semifinals",
-        "venue": "Estadio do Maracana"
+        "venue": "Estadio do Maracana",
+        "match": 2
     }
 ]

@@ -11,6 +11,7 @@
         <th>Time</th>
         <th>Stage</th>
         <th>Venue</th>
+        <th>Match #</th>
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
@@ -22,6 +23,7 @@
         <td><%= item.time %></td>
         <td><%= item.stage %></td>
         <td><%= item.venue %></td>
+        <td><%= item.match || "" %></td>
     </tr>
 <% }); %>
 </table>
