@@ -21,6 +21,17 @@ function view(req, res) {
     });
 }
 
+function edit(req, res) {
+    var id = req.params.id;
+    
+    matches.getById(id, function (err, item) {
+        if (err)
+            res.render('error', { error: err });
+        else
+            res.render('matchedit', { title: 'Edit Match', item: item });
+    });
+}
+
 function api(req, res) {
     var options = { };
     
@@ -41,5 +52,6 @@ function api(req, res) {
 module.exports = {
     index: index,
     view: view,
+    edit: edit,
     api: api
 };

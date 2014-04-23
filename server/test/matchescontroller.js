@@ -77,6 +77,36 @@ exports['get view'] = function (test) {
     controller.view(req, res);
 };
 
+exports['get edit'] = function (test) {
+    test.async();
+    
+    var req = {
+            params: { id: 1 }
+    };
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchedit');
+            test.ok(model);
+            test.equal(model.title, 'Edit Match');
+            test.ok(model.item);
+            test.equal(model.item.id, 1);
+            test.ok(model.item.id);
+            test.ok(model.item.local);
+            test.ok(model.item.away);
+            test.ok(model.item.localgoals);
+            test.ok(model.item.awaygoals);
+            test.ok(model.item.date);
+            test.ok(model.item.time);
+            test.ok(model.item.venue);
+            test.ok(model.item.stage);
+            test.done();
+        }
+    };
+    
+    controller.edit(req, res);
+};
+
 exports['get api with date'] = function (test) {
     test.async();
     

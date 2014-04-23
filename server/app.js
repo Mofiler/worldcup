@@ -52,6 +52,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/match', matches.index);
 app.get('/match/:id', matches.view);
+app.get('/match/:id/edit', matches.edit);
 app.get('/team', teams.index);
 app.get('/api/team', teams.api);
 app.get('/api/match', matches.api);

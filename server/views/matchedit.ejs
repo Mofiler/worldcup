@@ -1,0 +1,47 @@
+<% layout('layout') -%>
+
+<div class='row'>
+<a class='btn btn-info btn-xs' href='/match'>Matches</a>
+<a class='btn btn-info btn-xs' href='/match/<%= item.id %>'>View Match</a>
+</div>
+
+<div class="row">
+<table class="table-striped table-bordered">
+    <tr>
+        <td>Local Team</td>
+        <td><input type='text' name='local' value='<%= item.local %>'></td>
+    </tr>
+    <tr>
+        <td>Local Goals</td>
+        <td><input type='text' name='localgoals' value='<%= item.localgoals %>'></td>
+    </tr>
+    <tr>
+        <td>Away Team</td>
+        <td><input type='text' name='away' value='<%= item.away %>'></td>
+    </tr>
+    <tr>
+        <td>Away Goals</td>
+        <td><input type='text' name='awaygoals' value='<%= item.awaygoals %>'></td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td><input type='text' name='date' value='<%= item.date %>'></td>
+    </tr>
+    <tr>
+        <td>Time</td>
+        <td><input type='text' name='time' value='<%= item.time %>'></td>
+    </tr>
+    <tr>
+        <td>Stage</td>
+        <td><input type='text' name='stage' value='<%= item.stage %>'></td>
+    </tr>
+    <tr>
+        <td>Venue</td>
+        <td><input type='text' name='venue' value='<%= item.venue %>'></td>
+    </tr>
+    <tr>
+        <td>Match #</td>
+        <td><input type='text' name='match' value='<%= item.match %>'></td>
+    </tr>
+</table>
+</div>

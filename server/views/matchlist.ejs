@@ -16,7 +16,7 @@
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
-        <td><a href="match/<%= item.id %>">View</a></td>
+        <td><a class="btn btn-info btn-xs" href="match/<%= item.id %>">View</a></td>
         <td><%= item.local %></td>
         <td><%= item.localgoals == null ? '' : item.localgoals %></td>
         <td><%= item.away %></td>
