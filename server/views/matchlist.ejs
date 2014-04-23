@@ -3,6 +3,7 @@
 <div class="row">
 <table class="table-striped table-bordered">
     <tr>
+        <th></th>
         <th>Local Team</th>
         <th>Local Goals</th>
         <th>Away Team</th>
@@ -15,6 +16,7 @@
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
+        <td><a href="match/<%= item.id %>">View</a></td>
         <td><%= item.local %></td>
         <td><%= item.localgoals == null ? '' : item.localgoals %></td>
         <td><%= item.away %></td>
