@@ -1,0 +1,164 @@
+
+<countries>
+
+    <Australia>
+        <pj>2</pj>
+        <pg>0</pg>
+        <pe>2</pe>
+        <pp>0</pp>
+        <gf>2</gf>
+        <gc>2</gc>
+        
+        <rival>Spain</rival>
+        <local>Yes</local>
+        <estadio>Arena da Baixada</estadio>
+        <fecha>20140623</fecha>
+        <hora>1600</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>4</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Australia>
+
+    <Brazil>
+        <pj>2</pj>
+        <pg>1</pg>
+        <pe>0</pe>
+        <pp>1</pp>
+        <gf>4</gf>
+        <gc>4</gc>
+        
+        <rival>Cameroon</rival>
+        <local>No</local>
+        <estadio>Nacional</estadio>
+        <fecha>20140623</fecha>
+        <hora>2000</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>0</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Brazil>
+
+    <Cameroon>
+        <pj>2</pj>
+        <pg>2</pg>
+        <pe>0</pe>
+        <pp>0</pp>
+        <gf>8</gf>
+        <gc>3</gc>
+        
+        <rival>Brazil</rival>
+        <local>Yes</local>
+        <estadio>Nacional</estadio>
+        <fecha>20140623</fecha>
+        <hora>2000</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>0</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Cameroon>
+
+    <Chile>
+        <pj>2</pj>
+        <pg>0</pg>
+        <pe>2</pe>
+        <pp>0</pp>
+        <gf>2</gf>
+        <gc>2</gc>
+        
+        <rival>Netherlands</rival>
+        <local>No</local>
+        <estadio>Arena Corinthians</estadio>
+        <fecha>20140623</fecha>
+        <hora>1600</hora>
+        
+        <octavos>9</octavos>
+        <cuartos>0</cuartos>
+        <semi>4</semi>
+        <final>0</final>
+    </Chile>
+
+    <Croatia>
+        <pj>2</pj>
+        <pg>0</pg>
+        <pe>0</pe>
+        <pp>2</pp>
+        <gf>3</gf>
+        <gc>7</gc>
+        
+        <rival>Mexico</rival>
+        <local>Yes</local>
+        <estadio>Arena Pernambuco</estadio>
+        <fecha>20140623</fecha>
+        <hora>2000</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>0</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Croatia>
+
+    <Mexico>
+        <pj>2</pj>
+        <pg>1</pg>
+        <pe>0</pe>
+        <pp>1</pp>
+        <gf>4</gf>
+        <gc>5</gc>
+        
+        <rival>Croatia</rival>
+        <local>No</local>
+        <estadio>Arena Pernambuco</estadio>
+        <fecha>20140623</fecha>
+        <hora>2000</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>0</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Mexico>
+
+    <Netherlands>
+        <pj>2</pj>
+        <pg>0</pg>
+        <pe>1</pe>
+        <pp>1</pp>
+        <gf>1</gf>
+        <gc>3</gc>
+        
+        <rival>Chile</rival>
+        <local>Yes</local>
+        <estadio>Arena Corinthians</estadio>
+        <fecha>20140623</fecha>
+        <hora>1600</hora>
+        
+        <octavos>1</octavos>
+        <cuartos>0</cuartos>
+        <semi>0</semi>
+        <final>0</final>
+    </Netherlands>
+
+    <Spain>
+        <pj>2</pj>
+        <pg>1</pg>
+        <pe>1</pe>
+        <pp>0</pp>
+        <gf>3</gf>
+        <gc>1</gc>
+        
+        <rival>Australia</rival>
+        <local>No</local>
+        <estadio>Arena da Baixada</estadio>
+        <fecha>20140623</fecha>
+        <hora>1600</hora>
+        
+        <octavos>0</octavos>
+        <cuartos>8</cuartos>
+        <semi>2</semi>
+        <final>0</final>
+    </Spain>
+
+</countries>
