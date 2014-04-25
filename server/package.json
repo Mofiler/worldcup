@@ -13,7 +13,9 @@
     "mongodb": "1.4.0",
     "simpleflow": "0.0.1",
     "simpleasync": "0.0.3",
-    "simpleargs": "0.0.1"
+    "simpleargs": "0.0.1",
+    "xml2js": "0.4.2",
+    "zlib": "1.0.5"
   },
   "engines": {
     "node": "0.10.x",
