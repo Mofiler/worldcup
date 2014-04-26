@@ -1,0 +1,59 @@
+<% layout('layout') -%>
+
+<div class='row'>
+<a class='btn btn-info btn-xs' href='/match'>Matches</a>
+</div>
+
+<div class="row">
+<form method="post">
+<table class="table-striped table-bordered">
+    <tr>
+        <td>Local Team</td>
+        <td><input type='text' name='local' class='input-xlarge'></td>
+    </tr>
+    <tr>
+        <td>Local Goals</td>
+        <td><input type='text' name='localgoals' class='input-mini'></td>
+    </tr>
+    <tr>
+        <td>Away Team</td>
+        <td><input type='text' name='away' class='input-xlarge'></td>
+    </tr>
+    <tr>
+        <td>Away Goals</td>
+        <td><input type='text' name='awaygoals' class='input-mini'></td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td><input type='text' name='date'></td>
+    </tr>
+    <tr>
+        <td>Time</td>
+        <td><input type='text' name='time'></td>
+    </tr>
+    <tr>
+        <td>Stage</td>
+        <td>
+        <select name='stage'>
+        <% stages.forEach(function (stage) { %>
+        <option><%= stage %></option>
+        <% }); %>
+        </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Venue</td>
+        <td><input type='text' name='venue'></td>
+    </tr>
+    <tr>
+        <td>Match #</td>
+        <td><input type='text' name='match' class='input-mini'></td>
+    </tr>
+    <tr>
+        <td>Finished</td>
+        <td><input type='checkbox' name='finished'></td>
+    </tr>
+</table>
+<input class="btn btn-primary" type="submit" value="Create" />
+</form>
+</div>

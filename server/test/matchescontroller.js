@@ -79,7 +79,7 @@ exports['get view'] = function (test) {
     controller.view(req, res);
 };
 
-exports['get new'] = function (test) {
+exports['get create'] = function (test) {
     test.async();
     
     var req = {};
@@ -102,7 +102,7 @@ exports['get new'] = function (test) {
         }
     };
     
-    controller.newm(req, res);
+    controller.create(req, res);
 };
 
 exports['get edit'] = function (test) {

@@ -22,7 +22,7 @@ function view(req, res) {
     });
 }
 
-function newm(req, res) {
+function create(req, res) {
     res.render('matchnew', { title: 'New Match', stages: config.stages });
 }
 
@@ -57,7 +57,7 @@ function api(req, res) {
 module.exports = {
     index: index,
     view: view,
-    newm: newm,
+    create: create,
     edit: edit,
     api: api    
 };
