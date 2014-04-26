@@ -48,6 +48,18 @@ function edit(req, res) {
     });
 }
 
+function update(req, res) {
+    var id = req.params.id;
+    var match = getMatch(req);
+        
+    matches.update(id, match, function (err, item) {
+        if (err)
+            res.render('error', { error: err });
+        else
+            view(req, res);
+    });
+}
+
 function api(req, res) {
     var options = { };
     
@@ -111,6 +123,7 @@ module.exports = {
     view: view,
     create: create,
     edit: edit,
+    update: update,
     add: add,
     api: api
 };

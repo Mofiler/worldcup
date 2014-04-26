@@ -18,6 +18,17 @@ function MatchesDb(db) {
             cb(null, records[0]._id.toString());
         });
     };
+
+    this.update = function (id, match, cb) {
+        repository.update(id, match, function (err, records) {
+            if (err) {
+                cb(err, null);
+                return;
+            }
+            
+            cb(null, id.toString());
+        });
+    };
     
     this.getList = function (options, cb) {
         if (typeof options == 'function' && !cb) {
@@ -109,6 +120,13 @@ function MatchesMemory() {
         cb(null, item.id);
     };
 
+    this.update = function (id, match, cb) {
+        var item = clone(match);
+        item.id = id;
+        matches[item.id] = item;
+        cb(null, item.id);
+    };
+
     this.getById = function (id, cb) {
         cb(null, matches[id]);
     };
@@ -196,6 +214,10 @@ function add(match, cb) {
     provider.add(match, cb);
 }
 
+function update(id, match, cb) {
+    provider.update(id, match, cb);
+}
+
 function getList(options, cb) {
     provider.getList(options, cb);
 }
@@ -219,6 +241,7 @@ function useMemory() {
 module.exports = {
     clear: clear,
     add: add,
+    update: update,
     getList: getList,
     addList: addList,
     getById: getById,

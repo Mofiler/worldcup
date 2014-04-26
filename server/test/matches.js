@@ -28,6 +28,8 @@ exports['get empty list'] = function (test) {
     });
 };
 
+var firstid;
+
 exports['add match'] = function (test) {
     test.async();
     
@@ -36,7 +38,26 @@ exports['add match'] = function (test) {
     matches.add(match, function (err, id) {
         test.ok(!err);
         test.ok(id);
+        firstid = id;
         test.done();
+    });
+};
+
+exports['update match'] = function (test) {
+    test.async();
+    
+    var match = { local: 'argentina2', away: 'brazil2' };
+    
+    matches.update(firstid, match, function (err, data) {
+        test.ok(!err);
+        
+        matches.getById(firstid, function (err, item) {
+            test.ok(!err);
+            test.ok(item);
+            test.equal(item.local, match.local);
+            test.equal(item.away, match.away);
+            test.done();
+        });
     });
 };
 

@@ -20,6 +20,8 @@ exports['load data'] = function (test) {
     });
 };
 
+var firstid;
+
 exports['get index'] = function (test) {
     test.async();
     
@@ -33,6 +35,7 @@ exports['get index'] = function (test) {
             test.ok(model.items);
             test.ok(Array.isArray(model.items));
             test.ok(model.items.length);
+            firstid = model.items[0].id;
             test.ok(model.items[0].id);
             test.ok(model.items[0].local);
             test.ok(model.items[0].away);
@@ -239,7 +242,7 @@ exports['get edit'] = function (test) {
     test.async();
     
     var req = {
-            params: { id: 1 }
+            params: { id: firstid }
     };
     var res = {
         render: function (viewname, model) {
@@ -272,6 +275,54 @@ exports['get edit'] = function (test) {
     };
     
     controller.edit(req, res);
+};
+
+exports['post update'] = function (test) {
+    test.async();
+    
+    var form = {
+        local: 'Local Team',
+        away: 'Away Team',
+        date: 'Date',
+        time: 'Time',
+        venue: 'Venue',
+        stage: 'Stage'
+    }
+    
+    var req = {
+        params: {
+            id: firstid
+        },
+        param: function (key) {
+            return form[key];
+        }
+    };
+    
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchview');
+            test.ok(model);
+            test.equal(model.title, 'Match');
+            test.ok(model.item);
+            
+            test.equal(model.item.id, firstid);
+            test.equal(model.item.local, form.local);
+            test.equal(model.item.away, form.away);
+            test.equal(model.item.localgoals, null);
+            test.equal(model.item.awaygoals, null);
+            test.equal(model.item.date, form.date);
+            test.equal(model.item.time, form.time);
+            test.equal(model.item.venue, form.venue);
+            test.equal(model.item.stage, form.stage);
+            test.equal(model.item.match, null);
+            test.ok(!model.item.finished);
+            
+            test.done();
+        }
+    };
+    
+    controller.update(req, res);
 };
 
 exports['get api with date'] = function (test) {
@@ -335,8 +386,6 @@ exports['get api'] = function (test) {
             test.ok(model.items[0].id);
             test.ok(model.items[0].local);
             test.ok(model.items[0].away);
-            test.ok(model.items[0].localgoals);
-            test.ok(model.items[0].awaygoals);
             test.ok(model.items[0].date);
             test.ok(model.items[0].time);
             test.ok(model.items[0].venue);
