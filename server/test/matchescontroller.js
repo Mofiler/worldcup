@@ -3,6 +3,8 @@ var controller = require('../routes/matches');
 var matches = require('../services/matches');
 var list = require('../matches.json');
 
+var config = require('../config.json');
+
 matches.useMemory();
 
 exports['load data'] = function (test) {
@@ -77,6 +79,32 @@ exports['get view'] = function (test) {
     controller.view(req, res);
 };
 
+exports['get new'] = function (test) {
+    test.async();
+    
+    var req = {};
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchnew');
+            test.ok(model);
+            test.equal(model.title, 'New Match');
+
+            test.ok(model.stages);
+            test.ok(Array.isArray(model.stages));
+            test.equal(model.stages.length, config.stages.length);
+            
+            config.stages.forEach(function (stage) {
+                test.ok(model.stages.indexOf(stage) >= 0);
+            });
+            
+            test.done();
+        }
+    };
+    
+    controller.newm(req, res);
+};
+
 exports['get edit'] = function (test) {
     test.async();
     
@@ -100,6 +128,15 @@ exports['get edit'] = function (test) {
             test.ok(model.item.time);
             test.ok(model.item.venue);
             test.ok(model.item.stage);
+
+            test.ok(model.stages);
+            test.ok(Array.isArray(model.stages));
+            test.equal(model.stages.length, config.stages.length);
+            
+            config.stages.forEach(function (stage) {
+                test.ok(model.stages.indexOf(stage) >= 0);
+            });
+            
             test.done();
         }
     };

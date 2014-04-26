@@ -1,5 +1,6 @@
 
 var matches = require('../services/matches');
+var config = require('../config.json');
 
 function index(req, res) {
     matches.getList(function (err, list) {
@@ -21,6 +22,10 @@ function view(req, res) {
     });
 }
 
+function newm(req, res) {
+    res.render('matchnew', { title: 'New Match', stages: config.stages });
+}
+
 function edit(req, res) {
     var id = req.params.id;
     
@@ -28,7 +33,7 @@ function edit(req, res) {
         if (err)
             res.render('error', { error: err });
         else
-            res.render('matchedit', { title: 'Edit Match', item: item });
+            res.render('matchedit', { title: 'Edit Match', item: item, stages: config.stages });
     });
 }
 
@@ -52,6 +57,7 @@ function api(req, res) {
 module.exports = {
     index: index,
     view: view,
+    newm: newm,
     edit: edit,
-    api: api
+    api: api    
 };

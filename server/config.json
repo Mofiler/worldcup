@@ -3,5 +3,19 @@
     "mongodb": {
         "host": "localhost",
         "port": 27017
-    }
+    },
+    "stages": [
+        "Group A",
+        "Group B",
+        "Group C",
+        "Group D",
+        "Group E",
+        "Group F",
+        "Group G",
+        "Group H",
+        "Second Round",
+        "Quarterfinals",
+        "Semifinals",
+        "Finals"
+    ]
 }
