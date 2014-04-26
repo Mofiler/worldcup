@@ -26,6 +26,17 @@ function create(req, res) {
     res.render('matchnew', { title: 'New Match', stages: config.stages });
 }
 
+function add(req, res) {
+    var match = getMatch(req);
+    
+    matches.add(match, function (err, item) {
+        if (err)
+            res.render('error', { error: err });
+        else
+            index(req, res);
+    });
+}
+
 function edit(req, res) {
     var id = req.params.id;
     
@@ -54,10 +65,53 @@ function api(req, res) {
     });
 }
 
+function getMatch(req) {
+    var entity = { };
+    
+    entity.local = req.param('local');
+    entity.away = req.param('away');
+    
+    var localgoals = getInteger(req.param('localgoals'));
+    var awaygoals = getInteger(req.param('awaygoals'));
+    
+    if (localgoals != null)
+        entity.localgoals = localgoals;
+    if (awaygoals != null)
+        entity.awaygoals = awaygoals;
+
+    entity.date = req.param('date');
+    entity.time = req.param('time');
+    entity.stage = req.param('stage');
+    entity.venue = req.param('venue');
+
+    var match = getInteger(req.param('match'));
+    
+    if (match)
+        entity.match = match;
+        
+    entity.finished = req.param('finished') ? true : false;
+    
+    return entity;
+}
+
+function getInteger(text) {
+    if (text == null)
+        return null;
+        
+    var value = parseInt(text);
+    
+    if (value.toString() != text.trim())
+        return null;
+        
+    return value;
+}
+
 module.exports = {
     index: index,
     view: view,
     create: create,
     edit: edit,
-    api: api    
+    add: add,
+    api: api
 };
+

@@ -1,8 +1,8 @@
 <% layout('layout') -%>
 
 <div class='row'>
-<a class='btn btn-info btn-xs' href='/match'>Matches</a>
-<a class='btn btn-info btn-xs' href='/match/<%= item.id %>'>View Match</a>
+<a class='btn btn-info btn-small' href='/match'>Matches</a>
+<a class='btn btn-info btn-small' href='/match/<%= item.id %>'>View Match</a>
 </div>
 
 <div class="row">
@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>Local Goals</td>
-        <td><input type='text' name='localgoals' value='<%= item.localgoals %>'></td>
+        <td><input type='text' name='localgoals' value='<%= item.localgoals == null ? "" : item.localgoals %>'></td>
     </tr>
     <tr>
         <td>Away Team</td>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <td>Away Goals</td>
-        <td><input type='text' name='awaygoals' value='<%= item.awaygoals %>'></td>
+        <td><input type='text' name='awaygoals' value='<%= item.awaygoals == null ? "" : item.awaygoals %>'></td>
     </tr>
     <tr>
         <td>Date</td>
@@ -33,7 +33,13 @@
     </tr>
     <tr>
         <td>Stage</td>
-        <td><input type='text' name='stage' value='<%= item.stage %>'></td>
+        <td>
+        <select name='stage'>
+        <% stages.forEach(function (stage) { %>
+        <option <%= stage == item.stage ? "selected" : "" %>><%= stage %></option>
+        <% }); %>
+        </select>
+        </td>
     </tr>
     <tr>
         <td>Venue</td>
@@ -41,7 +47,11 @@
     </tr>
     <tr>
         <td>Match #</td>
-        <td><input type='text' name='match' value='<%= item.match %>'></td>
+        <td><input type='text' name='match' value='<%= item.match || "" %>'></td>
+    </tr>
+    <tr>
+        <td>Finished</td>
+        <td><input type='checkbox' <%= item.finished ? "checked" : "" %> name='finished'></td>
     </tr>
 </table>
 </div>

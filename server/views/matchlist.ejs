@@ -1,7 +1,7 @@
 <% layout('layout') -%>
 
 <div class='row'>
-<a class='btn btn-info btn-xs' href='/match/new'>New Match</a>
+<a class='btn btn-info btn-small' href='/match/new'>New Match</a>
 </div>
 
 <div class="row">
@@ -17,10 +17,11 @@
         <th>Stage</th>
         <th>Venue</th>
         <th>Match #</th>
+        <th>Finished</th>
     </tr>
 <% items.forEach(function (item) { %>
     <tr>
-        <td><a class="btn btn-info btn-xs" href="match/<%= item.id %>">View</a></td>
+        <td><a class="btn btn-info btn-mini" href="/match/<%= item.id %>">View</a></td>
         <td><%= item.local %></td>
         <td><%= item.localgoals == null ? '' : item.localgoals %></td>
         <td><%= item.away %></td>
@@ -30,6 +31,7 @@
         <td><%= item.stage %></td>
         <td><%= item.venue %></td>
         <td><%= item.match || "" %></td>
+        <td><%= item.finished ? "Yes" : "No" %></td>
     </tr>
 <% }); %>
 </table>

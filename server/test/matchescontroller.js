@@ -79,6 +79,32 @@ exports['get view'] = function (test) {
     controller.view(req, res);
 };
 
+exports['post add'] = function (test) {
+    test.async();
+    
+    var req = {};
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchnew');
+            test.ok(model);
+            test.equal(model.title, 'New Match');
+
+            test.ok(model.stages);
+            test.ok(Array.isArray(model.stages));
+            test.equal(model.stages.length, config.stages.length);
+            
+            config.stages.forEach(function (stage) {
+                test.ok(model.stages.indexOf(stage) >= 0);
+            });
+            
+            test.done();
+        }
+    };
+    
+    controller.add(req, res);
+};
+
 exports['get create'] = function (test) {
     test.async();
     
@@ -103,6 +129,110 @@ exports['get create'] = function (test) {
     };
     
     controller.create(req, res);
+};
+
+exports['post add'] = function (test) {
+    test.async();
+    
+    var form = {
+        local: 'Local Team',
+        away: 'Away Team',
+        date: 'Date',
+        time: 'Time',
+        venue: 'Venue',
+        stage: 'Stage'
+    }
+    
+    var req = {
+        param: function (key) {
+            return form[key];
+        }
+    };
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchlist');
+            test.ok(model);
+            
+            matches.getList(function (err, list) {
+                test.ok(!err);
+                test.ok(list);
+                test.ok(Array.isArray(list));
+                test.ok(list.length);
+                
+                var item = list[list.length - 1];
+                
+                test.ok(item);
+                test.equal(item.local, form.local);
+                test.equal(item.localgoals, null);
+                test.equal(item.away, form.away);
+                test.equal(item.awaygoals, null);
+                test.equal(item.date, form.date);
+                test.equal(item.time, form.time);
+                test.equal(item.venue, form.venue);
+                test.equal(item.finished, false);
+                test.equal(item.match, null);
+                
+                test.done();
+            });
+        }
+    };
+    
+    controller.add(req, res);
+};
+
+exports['post add with goals and finished'] = function (test) {
+    test.async();
+    
+    var form = {
+        local: 'Local Team',
+        localgoals: '1',
+        away: 'Away Team',
+        awaygoals: '2',
+        date: 'Date',
+        time: 'Time',
+        venue: 'Venue',
+        stage: 'Stage',
+        match: '1',
+        finished: 'finished'
+    }
+    
+    var req = {
+        param: function (key) {
+            return form[key];
+        }
+    };
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchlist');
+            test.ok(model);
+            
+            matches.getList(function (err, list) {
+                test.ok(!err);
+                test.ok(list);
+                test.ok(Array.isArray(list));
+                test.ok(list.length);
+                
+                var item = list[list.length - 1];
+                
+                test.ok(item);
+                test.equal(item.local, form.local);
+                test.equal(item.localgoals, 1);
+                test.equal(item.away, form.away);
+                test.equal(item.awaygoals, 2);
+                test.equal(item.date, form.date);
+                test.equal(item.time, form.time);
+                test.equal(item.venue, form.venue);
+                test.equal(item.match, 1);
+                test.equal(item.finished, true);
+                
+                test.done();
+            });
+        }
+    };
+    
+    controller.add(req, res);
 };
 
 exports['get edit'] = function (test) {
@@ -182,7 +312,6 @@ exports['get api with date'] = function (test) {
     
     controller.api(req, res);
 };
-
 
 exports['get api'] = function (test) {
     test.async();
