@@ -29,6 +29,10 @@ function MatchesDb(db) {
             cb(null, id.toString());
         });
     };
+
+    this.remove = function (id, cb) {
+        repository.remove(id, cb);
+    };
     
     this.getList = function (options, cb) {
         if (typeof options == 'function' && !cb) {
@@ -65,7 +69,8 @@ function MatchesDb(db) {
                 return;
             }
             
-            item.id = item._id.toString();
+            if (item)
+                item.id = item._id.toString();
             
             cb(null, item);
         });
@@ -126,6 +131,11 @@ function MatchesMemory() {
         matches[item.id] = item;
         cb(null, item.id);
     };
+    
+    this.remove = function (id, cb) {
+        delete matches[id];
+        cb(null, null);
+    }
 
     this.getById = function (id, cb) {
         cb(null, matches[id]);
@@ -218,6 +228,10 @@ function update(id, match, cb) {
     provider.update(id, match, cb);
 }
 
+function remove(id, cb) {
+    provider.remove(id, cb);
+}
+
 function getList(options, cb) {
     provider.getList(options, cb);
 }
@@ -242,6 +256,7 @@ module.exports = {
     clear: clear,
     add: add,
     update: update,
+    remove: remove,
     getList: getList,
     addList: addList,
     getById: getById,

@@ -325,6 +325,34 @@ exports['post update'] = function (test) {
     controller.update(req, res);
 };
 
+exports['get remove'] = function (test) {
+    test.async();
+    
+    var req = {
+        params: {
+            id: firstid
+        }
+    };
+    
+    var res = {
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchlist');
+            test.ok(model);
+            test.equal(model.title, 'Matches');
+            test.ok(model.items);
+
+            model.items.forEach(function (item) {
+                test.ok(item.id != firstid);
+            });
+            
+            test.done();
+        }
+    };
+    
+    controller.remove(req, res);
+};
+
 exports['get api with date'] = function (test) {
     test.async();
     

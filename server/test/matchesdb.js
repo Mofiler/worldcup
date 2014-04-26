@@ -137,6 +137,47 @@ exports['load list and get list'] = function (test) {
     flow.run();
 };
 
+exports['load list and delete first item'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.createFlow([clear, addList, getList, remove, getById, done], errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil' },
+        { local: 'bosnia', away: 'germany' }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    function getList(data, next) {
+        matches.getList(next);
+    }
+    
+    var firstid;
+    
+    function remove(list, next) {
+        firstid = list[0].id;
+        matches.remove(firstid, next);
+    }
+    
+    function getById(data, next) {
+        matches.getById(firstid, next);
+    }
+    
+    function done(data) {
+        test.equal(data, null);
+        test.done();
+    }
+    
+    flow.run();
+};
+
 exports['load list using date and get list'] = function (test) {
     test.async();
     

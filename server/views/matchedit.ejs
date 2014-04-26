@@ -6,6 +6,7 @@
 </div>
 
 <div class="row">
+<form method="post">
 <table class="table-striped table-bordered">
     <tr>
         <td>Local Team</td>
@@ -54,4 +55,6 @@
         <td><input type='checkbox' <%= item.finished ? "checked" : "" %> name='finished'></td>
     </tr>
 </table>
+<input class="btn btn-primary" type="submit" value="Save" />
+</form>
 </div>

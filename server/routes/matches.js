@@ -60,6 +60,17 @@ function update(req, res) {
     });
 }
 
+function remove(req, res) {
+    var id = req.params.id;
+        
+    matches.remove(id, function (err, item) {
+        if (err)
+            res.render('error', { error: err });
+        else
+            index(req, res);
+    });
+}
+
 function api(req, res) {
     var options = { };
     
@@ -124,6 +135,7 @@ module.exports = {
     create: create,
     edit: edit,
     update: update,
+    remove: remove,
     add: add,
     api: api
 };

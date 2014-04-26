@@ -55,6 +55,8 @@ app.get('/match/new', matches.create);
 app.post('/match/new', matches.add);
 app.get('/match/:id', matches.view);
 app.get('/match/:id/edit', matches.edit);
+app.post('/match/:id/edit', matches.update);
+app.get('/match/:id/remove', matches.remove);
 app.get('/team', teams.index);
 app.get('/api/team', teams.api);
 app.get('/api/match', matches.api);

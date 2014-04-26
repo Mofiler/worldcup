@@ -3,6 +3,7 @@
 <div class='row'>
 <a class='btn btn-info btn-small' href='/match'>Matches</a>
 <a class='btn btn-info btn-small' href='/match/<%= item.id %>/edit'>Edit Match</a>
+<a class='btn btn-danger btn-small' href='/match/<%= item.id %>/remove'>Remove Match</a>
 </div>
 
 <div class="row">
@@ -13,7 +14,7 @@
     </tr>
     <tr>
         <td>Local Goals</td>
-        <td><%= item.localgoals %></td>
+        <td><%= item.localgoals == null ? "" : item.localgoals %></td>
     </tr>
     <tr>
         <td>Away Team</td>
@@ -21,7 +22,7 @@
     </tr>
     <tr>
         <td>Away Goals</td>
-        <td><%= item.awaygoals %></td>
+        <td><%= item.awaygoals == null ? "" : item.localgoals  %></td>
     </tr>
     <tr>
         <td>Date</td>
