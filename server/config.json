@@ -17,5 +17,8 @@
         "Quarterfinals",
         "Semifinals",
         "Finals"
+    ],
+    "feeds": [
+        "http://www.tipgin.net/example-data/livescore-feed-example.xml"
     ]
 }

@@ -18,6 +18,7 @@ var config = require('./config.json');
 
 var matches = require('./routes/matches');
 var teams = require('./routes/teams');
+var feeds = require('./routes/feeds');
 var databases = require('./routes/databases');
 
 // Services
@@ -61,6 +62,9 @@ app.get('/team', teams.index);
 app.get('/api/team', teams.api);
 app.get('/api/match', matches.api);
 app.get('/api/match/date/:date', matches.api);
+
+app.get('/feed', feeds.index);
+app.post('/feed', feeds.apply);
 
 app.get('/admin/database', databases.index);
 app.get('/admin/database/usedb/:dbname', databases.usedb);
