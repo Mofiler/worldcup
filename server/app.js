@@ -79,6 +79,7 @@ args.define('t', 'time', null, 'Current time');
 args.define('d', 'date', null, 'Current date');
 
 var options = args.process(process.argv);
+databases.options(options);
 
 mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, function (err, newdb) {
     if (err)

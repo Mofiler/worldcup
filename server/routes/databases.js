@@ -6,6 +6,7 @@ var sf = require('simpleflow');
 
 var db;
 var usememory = false;
+var options = { };
 
 function errorFn(res) {
     return function (err) {
@@ -92,7 +93,7 @@ function loadmem(req, res) {
     var inmemory = matches.useMemory();
     var list = require('../matches.json');
     
-    matches.addList(list, function (err, data) {        
+    matches.addList(list, options, function (err, data) {        
         index(req,res);
     });;
 }
@@ -141,7 +142,7 @@ function loaddb(req, res) {
         
         var list = require('../matches.json');
         
-        matches.addList(list, next);
+        matches.addList(list, options, next);
     };
     
     function step2(result, next) {
@@ -174,6 +175,7 @@ module.exports = {
     createdb: createdb,
     clearmem: clearmem,
     loadmem: loadmem,
-    usemem: usemem
+    usemem: usemem,
+    options: function (opts) { options = opts; }
 };
 
