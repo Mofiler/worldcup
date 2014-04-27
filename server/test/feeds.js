@@ -24,7 +24,7 @@ exports['load matches list and apply feed'] = function (test) {
             test.equal(list[0].local, 'Tigre');
             test.strictEqual(list[0].localgoals, 0);
             test.equal(list[0].away, 'All Boys');
-            test.strictEqual(list[0].awaygoals);
+            test.strictEqual(list[0].awaygoals, 0);
 
             test.equal(list[1].local, 'Rosario Central');
             test.equal(list[1].localgoals, null);

@@ -7,12 +7,20 @@ function index(req, res) {
 }
 
 function apply(req, res) {
-    var url = req.params.feed;
-    feeds.apply(url, function (err, list) {
-        if (err)
+    var url = req.param('feed');
+    
+    feeds.read(url, function (err, feed) {
+        if (err) {
             res.render('error', { error: err });
-        else
-            res.redirect('/match');
+            return;
+        }
+        
+        feeds.apply(feed, function (err, processed) {
+            if (err)
+                res.render('error', { error: err });
+            else
+                res.redirect('/match');
+        });
     });
 }
 

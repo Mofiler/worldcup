@@ -63,33 +63,35 @@ function apply(score, cb) {
                 
             visited++;
                 
-            matches.findOne({ local: local, away: away, date: date }, function (err, data) {
-                if (err) {
-                    cb(err, null);
-                    return;
-                }
-                    
-                if (!data) {
-                    processed++;
-                    if (processed == visited)
-                        cb(null, processed);
-                        
-                    return;
-                }
-                
-                data.localgoals = localgoals;
-                data.awaygoalds = awaygoals;
-                
-                matches.update(data.id, data, function (err, result) {
+            setImmediate(function () {
+                matches.findOne({ local: local, away: away, date: date }, function (err, data) {
                     if (err) {
                         cb(err, null);
                         return;
                     }
+                        
+                    if (!data) {
+                        processed++;
+                        if (processed == visited)
+                            cb(null, processed);
+                            
+                        return;
+                    }
                     
-                    processed++;
+                    data.localgoals = localgoals;
+                    data.awaygoals = awaygoals;
                     
-                    if (processed == visited)
-                        cb(null, processed);
+                    matches.update(data.id, data, function (err, result) {
+                        if (err) {
+                            cb(err, null);
+                            return;
+                        }
+                        
+                        processed++;
+                        
+                        if (processed == visited)
+                            cb(null, processed);
+                    });
                 });
             });
         });
