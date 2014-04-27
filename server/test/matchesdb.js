@@ -427,6 +427,65 @@ exports['load list using date/time and get list'] = function (test) {
     flow.run();
 };
 
+exports['load list and get by criteria'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.sequence(clear, addList, getOne)
+        .success(done)
+        .fail(errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    function getOne(data, next) {
+        matches.findOne({ local: 'argentina', away: 'brazil', date: '20140610' }, next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.equal(data.local, 'argentina');
+        test.equal(data.away, 'brazil');
+        test.equal(data.date, '20140610');
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+exports['empty list and get by criteria'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.sequence(clear, getOne)
+        .success(done)
+        .fail(errorfn);
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function getOne(data, next) {
+        matches.findOne({ local: 'argentina', away: 'brazil', date: '20140610' }, next);
+    }
+    
+    function done(data) {
+        test.equal(data, null);
+        
+        test.done();
+    }
+    
+    flow.run();
+};
 
 exports['get list by date'] = function (test) {
     test.async();

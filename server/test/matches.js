@@ -66,7 +66,9 @@ exports['add and get match by id'] = function (test) {
     
     var match = { local: 'argentina', away: 'brazil' };
     
-    var flow = simpleflow.createFlow([add, getById, done], errorfn);
+    var flow = simpleflow.sequence(add, getById)
+        .success(done)
+        .fail(errorfn);
     
     flow.run(match);
     
@@ -93,7 +95,9 @@ exports['add and get match by id'] = function (test) {
 exports['load list and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil' },
@@ -130,7 +134,9 @@ exports['load list and get list'] = function (test) {
 exports['load list and delete first item'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, remove, getById, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList, remove, getById)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil' },
@@ -171,7 +177,9 @@ exports['load list and delete first item'] = function (test) {
 exports['load list using date and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
@@ -213,7 +221,9 @@ exports['load list using date and get list'] = function (test) {
 exports['load list using date/time and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
@@ -256,7 +266,9 @@ exports['load list using date/time and get list'] = function (test) {
 exports['load list using late date/time and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
@@ -295,11 +307,12 @@ exports['load list using late date/time and get list'] = function (test) {
     flow.run();
 };
 
-
 exports['load list and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil' },
@@ -336,7 +349,9 @@ exports['load list and get list'] = function (test) {
 exports['load list using date and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
@@ -378,7 +393,9 @@ exports['load list using date and get list'] = function (test) {
 exports['load list using date/time and get list'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = [
         { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
@@ -417,10 +434,72 @@ exports['load list using date/time and get list'] = function (test) {
     flow.run();
 };
 
+exports['load list and get by criteria'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.sequence(clear, addList, getOne)
+        .success(done)
+        .fail(errorfn);
+    
+    var list = [
+        { local: 'argentina', away: 'brazil', date: '20140610', time: '1900', localgoals: 1, awaygoals: 2 },
+        { local: 'bosnia', away: 'germany', date: '20140620', time: '2000', localgoals: 2, awaygoals: 3 }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    function getOne(data, next) {
+        matches.findOne({ local: 'argentina', away: 'brazil', date: '20140610' }, next);
+    }
+    
+    function done(data) {
+        test.ok(data);
+        test.equal(data.local, 'argentina');
+        test.equal(data.away, 'brazil');
+        test.equal(data.date, '20140610');
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
+exports['empty list and get by criteria'] = function (test) {
+    test.async();
+    
+    var flow = simpleflow.sequence(clear, getOne)
+        .success(done)
+        .fail(errorfn);
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function getOne(data, next) {
+        matches.findOne({ local: 'argentina', away: 'brazil', date: '20140610' }, next);
+    }
+    
+    function done(data) {
+        test.equal(data, null);
+        
+        test.done();
+    }
+    
+    flow.run();
+};
+
 exports['get list by date'] = function (test) {
     test.async();
     
-    var flow = simpleflow.createFlow([clear, addList, getList, done], errorfn);
+    var flow = simpleflow.sequence(clear, addList, getList)
+        .success(done)
+        .fail(errorfn);
     
     var list = require('../matches.json');
     
@@ -450,10 +529,4 @@ exports['get list by date'] = function (test) {
     
     flow.run();
 };
-
-
-
-
-
-
 

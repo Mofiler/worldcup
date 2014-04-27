@@ -75,6 +75,10 @@ function MatchesDb(db) {
             cb(null, item);
         });
     };
+    
+    this.findOne = function (criteria, cb) {
+        repository.findOne(criteria, cb);
+    }
 
     this.addList = function (list, options, cb) {
         var self = this;
@@ -140,6 +144,19 @@ function MatchesMemory() {
     this.getById = function (id, cb) {
         cb(null, matches[id]);
     };
+    
+    this.findOne = function (criteria, cb) {
+        for (var n in matches) {
+            var match = matches[n];
+            
+            if (satisfy(match, criteria)) {
+                cb(null, clone(match));
+                return;
+            }
+        }
+        
+        cb(null, null);
+    }
 
     this.getList = function (options, cb) {
         if (typeof options == 'function' && !cb) {
@@ -213,6 +230,14 @@ function clone(obj) {
     return newobj;
 }
 
+function satisfy(obj, criteria) {
+    for (var n in criteria)
+        if (obj[n] != criteria[n])
+            return false;
+
+    return true;
+}
+
 var memoryprovider = new MatchesMemory();
 var provider = memoryprovider;
 
@@ -244,6 +269,10 @@ function getById(id, cb) {
     provider.getById(id, cb);
 }
 
+function findOne(criteria, cb) {
+    provider.findOne(criteria, cb);
+}
+
 function useDatabase(db) {
     provider = new MatchesDb(db);
 }
@@ -260,6 +289,7 @@ module.exports = {
     getList: getList,
     addList: addList,
     getById: getById,
+    findOne: findOne,
     useDatabase: useDatabase,
     useMemory: useMemory
 }
