@@ -1,6 +1,7 @@
 
 var http = require('http'),
     url = require('url'),
+    matches = require('./matches'),
     zlib = require('zlib'),
     xml2js = require('xml2js');
 
@@ -45,6 +46,74 @@ function read(feedurl, cb) {
     req.end();    
 }
 
+function apply(score, cb) {
+    var visited = 0;
+    var processed = 0;
+    
+    score.livescore.league.forEach(function (league) {
+        league.match.forEach(function (mtch) {
+            var local = mtch.home[0].$.name;
+            var localgoals = getInteger(mtch.home[0].$.goals);
+            var away = mtch.away[0].$.name;
+            var awaygoals = getInteger(mtch.away[0].$.goals);
+            var date = getDate(mtch.$.date);
+            
+            if (localgoals == null || awaygoals == null)
+                return;
+                
+            visited++;
+                
+            matches.findOne({ local: local, away: away, date: date }, function (err, data) {
+                if (err) {
+                    cb(err, null);
+                    return;
+                }
+                    
+                if (!data) {
+                    processed++;
+                    if (processed == visited)
+                        cb(null, processed);
+                        
+                    return;
+                }
+                
+                data.localgoals = localgoals;
+                data.awaygoalds = awaygoals;
+                
+                matches.update(data.id, data, function (err, result) {
+                    if (err) {
+                        cb(err, null);
+                        return;
+                    }
+                    
+                    processed++;
+                    
+                    if (processed == visited)
+                        cb(null, processed);
+                });
+            });
+        });
+    });
+}
+
+function getInteger(text) {
+    if (text == null)
+        return null;
+        
+    var value = parseInt(text);
+    
+    if (value.toString() != text.trim())
+        return null;
+        
+    return value;
+}
+
+function getDate(text) {
+    return text.substring(6, 10) + text.substring(3, 5) + text.substring(0, 2);
+}
+
 module.exports = {
-    read: read
+    read: read,
+    apply: apply
 };
+

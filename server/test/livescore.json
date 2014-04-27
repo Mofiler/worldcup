@@ -1,0 +1,156 @@
+{
+    "livescore": {
+        "$": {
+            "updated": "11.04.2014 21:21:33",
+            "sport": "soccer"
+        },
+        "league": [
+            {
+                "$": {
+                    "country": "argentina",
+                    "cup": "False",
+                    "id": "2914",
+                    "name": "Argentina: Primera Division - Torneo Final",
+                    "sub_id": "6363803810"
+                },
+                "match": [
+                    {
+                        "$": {
+                            "alternate_id": "3933187",
+                            "alternate_id_2": "4098672",
+                            "commentary": "True",
+                            "date": "11.04.2014",
+                            "id": "4050922",
+                            "status": "21",
+                            "time": "21:00"
+                        },
+                        "home": [
+                            {
+                                "$": {
+                                    "alternate_id": "536380381688",
+                                    "goals": "0",
+                                    "id": "2337900",
+                                    "name": "Tigre"
+                                }
+                            }
+                        ],
+                        "away": [
+                            {
+                                "$": {
+                                    "alternate_id": "536380381701",
+                                    "goals": "0",
+                                    "id": "2337732",
+                                    "name": "All Boys"
+                                }
+                            }
+                        ],
+                        "events": [
+                            "\n"
+                        ],
+                        "ht": [
+                            {
+                                "$": {
+                                    "score": "[0-0]"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "$": {
+                            "alternate_id": "3912026",
+                            "alternate_id_2": "4098465",
+                            "commentary": "True",
+                            "date": "11.04.2014",
+                            "id": "4029775",
+                            "status": "23:10",
+                            "time": "23:10"
+                        },
+                        "home": [
+                            {
+                                "$": {
+                                    "alternate_id": "536380381697",
+                                    "goals": "-",
+                                    "id": "2337876",
+                                    "name": "Rosario Central"
+                                }
+                            }
+                        ],
+                        "away": [
+                            {
+                                "$": {
+                                    "alternate_id": "536380381690",
+                                    "goals": "-",
+                                    "id": "2337756",
+                                    "name": "Belgrano"
+                                }
+                            }
+                        ],
+                        "events": [
+                            ""
+                        ],
+                        "ht": [
+                            {
+                                "$": {
+                                    "score": ""
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "$": {
+                    "country": "argentina",
+                    "cup": "False",
+                    "id": "2911",
+                    "name": "Argentina: Primera B Nacional",
+                    "sub_id": "6363803811"
+                },
+                "match": [
+                    {
+                        "$": {
+                            "alternate_id": "3743401",
+                            "alternate_id_2": "4097849",
+                            "commentary_available": "",
+                            "date": "11.04.2014",
+                            "id": "3837593",
+                            "status": "23:30",
+                            "time": "23:30"
+                        },
+                        "home": [
+                            {
+                                "$": {
+                                    "alternate_id": "53638038185",
+                                    "goals": "-",
+                                    "id": "2337787",
+                                    "name": "Defensa y Justicia"
+                                }
+                            }
+                        ],
+                        "away": [
+                            {
+                                "$": {
+                                    "alternate_id": "536380381718",
+                                    "goals": "-",
+                                    "id": "2337906",
+                                    "name": "Union de Santa Fe"
+                                }
+                            }
+                        ],
+                        "events": [
+                            ""
+                        ],
+                        "ht": [
+                            {
+                                "$": {
+                                    "score": ""
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
+
