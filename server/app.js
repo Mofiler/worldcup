@@ -85,7 +85,7 @@ mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, 
     if (err)
         console.log(err);
     else {
-        // smatches.useDatabase(newdb);
+        smatches.useDatabase(newdb);
         databases.useDatabase(newdb);
     }
 
