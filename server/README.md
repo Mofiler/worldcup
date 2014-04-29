@@ -50,8 +50,6 @@ Initially, the data is loaded in memory from `matches.json`. Partial content:
 ]
 ```
 
-You must select a database to use, using the top menu option `Databases`.
-
 ## Configuration
 
 You can edit the `config.json` file:
@@ -82,3 +80,4 @@ You can edit the `config.json` file:
 }
 ```
 
+The database is used at start.
