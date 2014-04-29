@@ -1,4 +1,6 @@
 
+require('daemon')();
+
 /**
  * Module dependencies.
  */
