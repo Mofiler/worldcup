@@ -1,14 +1,18 @@
 
 var mongodb = require('../libs/mongodb');
+var config = require('../config.json');
 
 function MatchesDb(db) {
+    var cache = require('simplekache').create();
     var repository = mongodb.createRepository(db, 'matches');
     
     this.clear = function (cb) {
+        cache.set('matches', null);
         repository.clear(cb);
     };
 
     this.add = function (match, cb) {
+        cache.set('matches', null);
         repository.insert(match, function (err, records) {
             if (err) {
                 cb(err, null);
@@ -20,6 +24,7 @@ function MatchesDb(db) {
     };
 
     this.update = function (id, match, cb) {
+        cache.set('matches', null);
         repository.update(id, match, function (err, records) {
             if (err) {
                 cb(err, null);
@@ -31,6 +36,7 @@ function MatchesDb(db) {
     };
 
     this.remove = function (id, cb) {
+        cache.set('matches', null);
         repository.remove(id, cb);
     };
     
@@ -42,34 +48,49 @@ function MatchesDb(db) {
         
         options = options || { };
         
+        var items = cache.get('matches');
+        
+        if (items) {
+            cb(null, filterItems(result, options));
+            return;
+        }
+            
         repository.findAll(function (err, items) {
             if (err) {
                 cb(err, null);
                 return;
             }
             
-            var result = [];
+            var result = filterItems(items, options);
             
-            items.forEach(function(item) {
-                if (options.date) {
-                    if (item.date != options.date)
-                        return;
-                    if (options.time && item.time && options.time < item.time)
-                        return;
-                }
-                
-                if (options.notfinished && item.finished)
-                    return;
-                if (options.finished && !item.finished)
-                    return;
-                    
-                item.id = item._id.toString();
-                result.push(item);
-            });
+            cache.set('matches', result, config.cache.lifetime);
             
             cb(null, result);
         });
     };
+    
+    function filterItems(items, options) {
+        var result = [];
+        
+        items.forEach(function(item) {
+            if (options.date) {
+                if (item.date != options.date)
+                    return;
+                if (options.time && item.time && options.time < item.time)
+                    return;
+            }
+            
+            if (options.notfinished && item.finished)
+                return;
+            if (options.finished && !item.finished)
+                return;
+                
+            item.id = item._id.toString();
+            result.push(item);
+        });
+        
+        return result;
+    }
     
     this.getById = function (id, cb) {
         repository.findById(id, function (err, item) {

@@ -18,6 +18,9 @@
         "Semifinals",
         "Finals"
     ],
+    "cache": {
+        "lifetime": 10000
+    },
     "feeds": [
         "http://www.tipgin.net/example-data/livescore-feed-example.xml"
     ]

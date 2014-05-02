@@ -14,8 +14,9 @@
     "simpleflow": "0.0.2",
     "simpleasync": "0.0.3",
     "simpleargs": "0.0.1",
+    "simplekache": "0.0.1",
     "xml2js": "0.4.2",
-    "daemon": "*"
+    "daemon": "1.1.0"
   },
   "engines": {
     "node": "0.10.x",
