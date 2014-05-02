@@ -51,7 +51,7 @@ function MatchesDb(db) {
         var items = cache.get('matches');
         
         if (items) {
-            cb(null, filterItems(result, options));
+            cb(null, filterItems(items, options));
             return;
         }
             
