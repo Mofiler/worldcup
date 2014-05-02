@@ -62,7 +62,8 @@ app.post('/match/:id/edit', matches.update);
 app.get('/match/:id/remove', matches.remove);
 app.get('/team', teams.index);
 app.get('/api/team', teams.api);
-app.get('/api/match', matches.api);
+app.get('/api/match/now', matches.api);
+app.get('/api/match/history', matches.apihistory);
 app.get('/api/match/date/:date', matches.api);
 app.get('/api/match/date/:date/time/:time', matches.api);
 

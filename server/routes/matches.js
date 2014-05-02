@@ -99,6 +99,20 @@ function api(req, res) {
     });
 }
 
+function apihistory(req, res) {
+    var options = { finished: true };
+    
+    matches.getList(options, function (err, list) {
+        if (err)
+            res.render('error', { error: err });
+        else {
+            res.status(200);
+            res.set('Content-Type', 'text/xml');
+            res.render('matchapih', { items: list });
+        }
+    });
+}
+
 function getMatch(req) {
     var entity = { };
     
@@ -148,6 +162,7 @@ module.exports = {
     update: update,
     remove: remove,
     add: add,
-    api: api
+    api: api,
+    apihistory: apihistory
 };
 

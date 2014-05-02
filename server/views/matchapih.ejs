@@ -1,0 +1,13 @@
+<matches>
+<% items.forEach(function (item) { %>
+    <match>
+        <local><%= item.local %></local>
+        <visitante><%= item.away %></visitante>
+        <goleslocal><%= item.localgoals == null ? "" : item.localgoals %></goleslocal>
+        <golesvisitante><%= item.awaygoals == null ? "" : item.awaygoals %></golesvisitante>
+        <estadio><%= item.venue %></estadio>
+        <horario><%= item.time %></horario>
+        <fecha><%= item.date %></fecha>
+    </match>
+<% }); %>
+</matches>

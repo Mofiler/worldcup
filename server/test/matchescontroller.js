@@ -531,3 +531,52 @@ exports['get api with date time excluding finished and not started'] = function 
     
     seq.run().success(function () { controller.api(req, res); });
 };
+
+exports['get api history'] = function (test) {
+    test.async();
+    
+    var seq = sf.sequence(clear, addList);    
+    
+    var list = [
+        { local: 'spain', away: 'brazil', date: '20140612' },
+        { local: 'argentina', away: 'brazil', date: '20140613', time: '1800' },
+        { local: 'uruguay', away: 'chile', date: '20140613', time: '2000' },
+        { local: 'bosnia', away: 'germany', date: '20140613', finished: true }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    var req = {
+        params: { }
+    };
+    
+    var res = {
+        status: function(status) {
+            test.equal(status, 200);
+        },
+        set: function (name, value) {
+            test.equal(name, 'Content-Type');
+            test.equal(value, 'text/xml');
+        },
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchapih');
+            test.ok(model);
+            test.ok(model.items);
+            test.ok(Array.isArray(model.items));
+            test.ok(model.items.length);
+            test.equal(model.items.length, 1);
+            test.equal(model.items[0].local, 'bosnia');
+            test.equal(model.items[0].away, 'germany');
+            test.done();
+        }
+    };
+    
+    seq.run().success(function () { controller.apihistory(req, res); });
+};
