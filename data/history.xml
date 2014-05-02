@@ -1,0 +1,27 @@
+<matches>
+	<match>
+		
+			<local>Argentina</local>
+			<visitante>Bosnia</visitante>
+			<goleslocal>0</goleslocal><!-- vacio si no fue jugado-->
+			<golesvisitante>0</golesvisitante><!-- vacio si no fue jugado-->
+			<estadio>maracana</estadio><!-- estadio del siguiente partido-->
+			<horario>1515</horario><!-- horario en UTC    MUY IMPORTANTE!!-->
+			<fecha>20140617</fecha><!-- fecha del partido -->
+			
+		
+	</match>
+	<match>
+		
+			<local>Brazil</local>
+			<visitante>Croatia</visitante>
+			<goleslocal>0</goleslocal>
+			<golesvisitante>0</golesvisitante>
+			<estadio>maracana</estadio>
+			<horario>1515</horario>
+			<fecha>20140617</fecha>
+			
+		
+	</match>
+	
+</matches>
