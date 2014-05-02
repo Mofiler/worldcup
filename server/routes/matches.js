@@ -1,6 +1,7 @@
 
 var matches = require('../services/matches');
 var config = require('../config.json');
+var dates = require('../libs/dates');
 
 function index(req, res) {
     matches.getList(function (err, list) {
@@ -74,8 +75,18 @@ function remove(req, res) {
 function api(req, res) {
     var options = { };
     
-    if (req.params && req.params.date)
+    if (req.params && req.params.date) {
         options.date = req.params.date;
+        options.notfinished = true;
+        
+        if (req.params.time)
+            options.time = req.params.time;
+    }
+    else {
+        var date = new Date();
+        options.date = dates.getUTCDate(date);
+        options.time = dates.getUTCTime(date);
+    }
     
     matches.getList(options, function (err, list) {
         if (err)

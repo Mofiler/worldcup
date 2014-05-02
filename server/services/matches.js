@@ -51,7 +51,16 @@ function MatchesDb(db) {
             var result = [];
             
             items.forEach(function(item) {
-                if (options.date && item.date != options.date)
+                if (options.date) {
+                    if (item.date != options.date)
+                        return;
+                    if (options.time && item.time && options.time < item.time)
+                        return;
+                }
+                
+                if (options.notfinished && item.finished)
+                    return;
+                if (options.finished && !item.finished)
                     return;
                     
                 item.id = item._id.toString();
@@ -169,7 +178,16 @@ function MatchesMemory() {
         var result = [];
         
         matches.forEach(function (match) {
-            if (options.date && match.date != options.date)
+            if (options.date) {
+                if (match.date != options.date)
+                    return;
+                if (options.time && match.time && options.time < match.time)
+                    return;
+            }
+            
+            if (options.notfinished && match.finished)
+                return;
+            if (options.finished && !match.finished)
                 return;
                 
             result.push(clone(match));

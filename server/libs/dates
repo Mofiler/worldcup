@@ -1,0 +1,30 @@
+
+function getUTCDate(date) {
+    var year = date.getUTCFullYear();
+    var month = date.getUTCMonth();
+    var day = date.getUTCDate();
+    
+    return fill(year, 4) + fill(month, 2) + fill(day, 2);
+}
+
+function getUTCTime(date) {
+    var hours = date.getUTCHours();
+    var minutes = date.getUTCMinutes();
+    
+    return fill(hours, 2) + fill(minutes, 2);
+}
+
+function fill(value, size) {
+    var text = value.toString();
+    
+    while (text.length < size)
+        text = "0" + text;
+        
+    return text;
+}
+
+module.exports = {
+    getUTCDate: getUTCDate,
+    getUTCTime: getUTCTime
+}
+

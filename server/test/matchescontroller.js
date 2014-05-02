@@ -2,6 +2,7 @@
 var controller = require('../routes/matches');
 var matches = require('../services/matches');
 var list = require('../matches.json');
+var sf = require('simpleflow');
 
 var config = require('../config.json');
 
@@ -392,8 +393,24 @@ exports['get api with date'] = function (test) {
     controller.api(req, res);
 };
 
-exports['get api'] = function (test) {
+exports['get api using now'] = function (test) {
     test.async();
+    
+    var seq = sf.sequence(clear, addList);    
+    
+    var list = [
+        { local: 'spain', away: 'brazil', date: '20140101' },
+        { local: 'argentina', away: 'brazil', date: '20140102' },
+        { local: 'bosnia', away: 'germany', date: '20140102', finished: true }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
     
     var req = {};
     var res = {
@@ -410,17 +427,107 @@ exports['get api'] = function (test) {
             test.ok(model);
             test.ok(model.items);
             test.ok(Array.isArray(model.items));
-            test.ok(model.items.length);
-            test.ok(model.items[0].id);
-            test.ok(model.items[0].local);
-            test.ok(model.items[0].away);
-            test.ok(model.items[0].date);
-            test.ok(model.items[0].time);
-            test.ok(model.items[0].venue);
-            test.ok(model.items[0].stage);
+            test.equal(model.items.length, 0);
             test.done();
         }
     };
     
-    controller.api(req, res);
+    seq.run().success(function () { controller.api(req, res); });
+};
+
+exports['get api with date excluding finished'] = function (test) {
+    test.async();
+    
+    var seq = sf.sequence(clear, addList);    
+    
+    var list = [
+        { local: 'spain', away: 'brazil', date: '20140612' },
+        { local: 'argentina', away: 'brazil', date: '20140613' },
+        { local: 'bosnia', away: 'germany', date: '20140613', finished: true }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    var req = {
+        params: { date: '20140613' }
+    };
+    
+    var res = {
+        status: function(status) {
+            test.equal(status, 200);
+        },
+        set: function (name, value) {
+            test.equal(name, 'Content-Type');
+            test.equal(value, 'text/xml');
+        },
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchapi');
+            test.ok(model);
+            test.ok(model.items);
+            test.ok(Array.isArray(model.items));
+            test.ok(model.items.length);
+            test.equal(model.items.length, 1);
+            test.equal(model.items[0].local, 'argentina');
+            test.equal(model.items[0].away, 'brazil');
+            test.done();
+        }
+    };
+    
+    seq.run().success(function () { controller.api(req, res); });
+};
+
+exports['get api with date time excluding finished and not started'] = function (test) {
+    test.async();
+    
+    var seq = sf.sequence(clear, addList);    
+    
+    var list = [
+        { local: 'spain', away: 'brazil', date: '20140612' },
+        { local: 'argentina', away: 'brazil', date: '20140613', time: '1800' },
+        { local: 'uruguay', away: 'chile', date: '20140613', time: '2000' },
+        { local: 'bosnia', away: 'germany', date: '20140613', finished: true }
+    ];
+    
+    function clear(data, next) {
+        matches.clear(next);
+    }
+    
+    function addList(data, next) {
+        matches.addList(list, next);
+    }
+    
+    var req = {
+        params: { date: '20140613', time: '1800' }
+    };
+    
+    var res = {
+        status: function(status) {
+            test.equal(status, 200);
+        },
+        set: function (name, value) {
+            test.equal(name, 'Content-Type');
+            test.equal(value, 'text/xml');
+        },
+        render: function (viewname, model) {
+            test.ok(viewname);
+            test.equal(viewname, 'matchapi');
+            test.ok(model);
+            test.ok(model.items);
+            test.ok(Array.isArray(model.items));
+            test.ok(model.items.length);
+            test.equal(model.items.length, 1);
+            test.equal(model.items[0].local, 'argentina');
+            test.equal(model.items[0].away, 'brazil');
+            test.done();
+        }
+    };
+    
+    seq.run().success(function () { controller.api(req, res); });
 };

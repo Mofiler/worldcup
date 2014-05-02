@@ -64,6 +64,7 @@ app.get('/team', teams.index);
 app.get('/api/team', teams.api);
 app.get('/api/match', matches.api);
 app.get('/api/match/date/:date', matches.api);
+app.get('/api/match/date/:date/time/:time', matches.api);
 
 app.get('/feed', feeds.index);
 app.post('/feed', feeds.apply);
