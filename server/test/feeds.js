@@ -3,6 +3,17 @@ var feeds = require('../services/feeds');
 var matches = require('../services/matches');
 var sf = require('simpleflow');
 
+exports['clear data'] = function (test) {
+    test.async();
+
+    matches.useMemory();
+    
+    matches.clear(function (err, data) {
+        test.ok(!err);
+        test.done();
+    });
+};
+
 exports['load tipgin live score'] = function (test) {
     test.async();
     

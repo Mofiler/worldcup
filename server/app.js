@@ -1,5 +1,5 @@
 
-require('daemon')();
+// require('daemon')();
 
 /**
  * Module dependencies.
@@ -91,21 +91,7 @@ mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, 
         databases.useDatabase(newdb);
     }
 
-    smatches.addList(require('./matches.json'), options, function (err, data) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-
-        smatches.getList(function (err, data) {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            
-            http.createServer(app).listen(app.get('port'), function(){
-              console.log('Express server listening on port ' + app.get('port'));
-            });
-        });
+    http.createServer(app).listen(app.get('port'), function(){
+      console.log('Express server listening on port ' + app.get('port'));
     });
 });
