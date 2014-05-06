@@ -61,9 +61,9 @@ function MatchesDb(db) {
                 return;
             }
             
-            var result = filterItems(items, options);
+            cache.set('matches', items, config.cache.lifetime);
             
-            cache.set('matches', result, config.cache.lifetime);
+            var result = filterItems(items, options);
             
             cb(null, result);
         });
