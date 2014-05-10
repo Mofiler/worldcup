@@ -7,7 +7,8 @@
         "date": "20140612",
         "time": "2000",
         "stage": "Group A",
-        "venue": "Arena Corinthians"
+        "venue": "Arena Corinthians",
+        "finished": true
     },
     {
         "local": "Mexico",

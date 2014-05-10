@@ -62,6 +62,10 @@ function processMatchTeam(teams, teamname, match, islocal) {
             team.owngoals += match.localgoals;
         }
         team.matches += 1;
+
+        if (!match.finished)
+            if (!team.hasOwnProperty('nextmatch') || team.nextmatch.date > match.date || (team.nextmatch.date == match.date && team.nextmatch.time > match.time))
+                team.nextmatch = match;
     }
     else {
         if (!team.hasOwnProperty('nextmatch') || team.nextmatch.date > match.date || (team.nextmatch.date == match.date && team.nextmatch.time > match.time))
