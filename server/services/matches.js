@@ -78,6 +78,8 @@ function MatchesDb(db) {
                     return;
                 if (options.time && item.time && options.time < item.time)
                     return;
+                if (item.localgoals == null || item.awaygoals == null)
+                    return;
             }
             
             if (options.notfinished && item.finished)
