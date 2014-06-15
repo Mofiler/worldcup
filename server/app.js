@@ -26,6 +26,7 @@ var databases = require('./routes/databases');
 // Services
 
 var smatches = require('./services/matches');
+var sfeeds = require('./services/feeds');
 
 // MongoDB
 
@@ -92,8 +93,27 @@ mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, 
         smatches.useDatabase(newdb);
         databases.useDatabase(newdb);
     }
-
+    
     http.createServer(app).listen(app.get('port'), function(){
-      console.log('Express server listening on port ' + app.get('port'));
+        if (config.refresh)
+            refreshFeed();
+
+        console.log('Express server listening on port ' + app.get('port'));
     });
 });
+
+function refreshFeed() {
+    var url = config.feeds[0];
+    
+    if (config.refresh)
+        setTimeout(refreshFeed, config.refresh);
+    
+    sfeeds.read(url, function (err, feed) {
+        if (err)
+            return;
+        
+        sfeeds.apply(feed, function (err, processed) {
+        });
+    });
+}
+

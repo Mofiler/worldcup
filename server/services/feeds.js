@@ -52,11 +52,20 @@ function apply(score, cb) {
     
     score.livescore.league.forEach(function (league) {
         league.match.forEach(function (mtch) {
-            var local = mtch.home[0].$.name;
+            var local = mtch.home[0].$.name;                
+            if (local)
+                local = local.replace(/\s/g,'');
             var localgoals = getInteger(mtch.home[0].$.goals);
-            var away = mtch.away[0].$.name;
+            
+            var away = mtch.away[0].$.name;            
+            if (away)
+                away = away.replace(/\s/g,'');
+                
             var awaygoals = getInteger(mtch.away[0].$.goals);
+            
             var date = getDate(mtch.$.date);
+            
+            var finished = mtch.$.status == 'FT';
             
             if (localgoals == null || awaygoals == null)
                 return;
@@ -81,7 +90,17 @@ function apply(score, cb) {
                     data.localgoals = localgoals;
                     data.awaygoals = awaygoals;
                     
-                    matches.update(data.id, data, function (err, result) {
+                    if (finished)
+                        data.finished = true;
+                    
+                    var id = data.id;
+                    
+                    if (data._id) {
+                        id = data._id.toString();
+                        delete data._id;
+                    }
+                    
+                    matches.update(id, data, function (err, result) {
                         if (err) {
                             cb(err, null);
                             return;

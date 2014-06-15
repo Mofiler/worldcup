@@ -22,6 +22,7 @@
         "lifetime": 10000
     },
     "feeds": [
-        "http://www.tipgin.net/example-data/livescore-feed-example.xml"
-    ]
+        "http://www.tipgin.net/datav2/accounts/btafel/soccer/livescore/livescore.xml"
+    ],
+    "refresh": 360000
 }
