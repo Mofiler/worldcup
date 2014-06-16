@@ -21,7 +21,6 @@ exports['load new tipgin live score'] = function (test) {
         test.ok(!err);
         test.ok(data);
         test.equal(typeof data, 'object');
-        console.log(JSON.stringify(data, null, 4));
         test.done();
     });
 };

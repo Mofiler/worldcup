@@ -24,5 +24,8 @@
     "feeds": [
         "http://www.tipgin.net/datav2/accounts/btafel/soccer/livescore/livescore.xml"
     ],
-    "refresh": 6000
+    "refresh": 6000,
+    "translate": {
+        "Bosnia & Herzegovina": "Bosnia"
+    }
 }

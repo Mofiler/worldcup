@@ -3,6 +3,7 @@ var http = require('http'),
     url = require('url'),
     matches = require('./matches'),
     zlib = require('zlib'),
+    config = require('../config.json'),
     xml2js = require('xml2js');
 
 function read(feedurl, cb) {
@@ -52,14 +53,14 @@ function apply(score, cb) {
     
     score.livescore.league.forEach(function (league) {
         league.match.forEach(function (mtch) {
-            var local = mtch.home[0].$.name;                
+            var local = mtch.home[0].$.name;
             if (local)
-                local = local.replace(/\s/g,'');
+                local = normalizeName(local);
             var localgoals = getInteger(mtch.home[0].$.goals);
             
             var away = mtch.away[0].$.name;            
             if (away)
-                away = away.replace(/\s/g,'');
+                away = normalizeName(away);
                 
             var awaygoals = getInteger(mtch.away[0].$.goals);
             
@@ -115,6 +116,14 @@ function apply(score, cb) {
             });
         });
     });
+}
+
+function normalizeName(name) {
+    if (config.translate && config.translate[name])
+        name = config.translate[name];
+        
+    name = name.replace(/\s/g,'');
+    return name;
 }
 
 function getInteger(text) {

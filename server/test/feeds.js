@@ -76,7 +76,7 @@ exports['load matches list and apply feed world cup data'] = function (test) {
     var seq = sf.sequence(clear, addList, applyFeed, getList)
         .success(function (list) {
             test.ok(list);
-            test.equal(list.length, 3);
+            test.equal(list.length, 4);
 
             test.equal(list[0].local, 'IvoryCoast');
             test.strictEqual(list[0].localgoals, 2);
@@ -96,13 +96,20 @@ exports['load matches list and apply feed world cup data'] = function (test) {
             test.equal(list[2].awaygoals, null);
             test.equal(list[2].finished, null);
 
+            test.equal(list[3].local, 'Argentina');
+            test.equal(list[3].localgoals, 2);
+            test.equal(list[3].away, 'Bosnia');
+            test.equal(list[3].awaygoals, 1);
+            test.equal(list[3].finished, null);
+
             test.done();
         })
     
     var list = [
         { local: 'IvoryCoast', away: 'Japan', date: '20140615' },
         { local: 'Switzerland', away: 'Ecuador', date: '20140615' },
-        { local: 'France', away: 'Honduras', date: '20140615' }
+        { local: 'France', away: 'Honduras', date: '20140615' },
+        { local: 'Argentina', away: 'Bosnia', date: '20140615' }
     ];
         
     seq.run();

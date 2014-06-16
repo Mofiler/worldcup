@@ -9644,7 +9644,7 @@
                         "home": [
                             {
                                 "$": {
-                                    "goals": "?",
+                                    "goals": "2",
                                     "id": "2337719",
                                     "name": "Argentina"
                                 }
@@ -9653,7 +9653,7 @@
                         "away": [
                             {
                                 "$": {
-                                    "goals": "?",
+                                    "goals": "1",
                                     "id": "2338833",
                                     "name": "Bosnia & Herzegovina"
                                 }
