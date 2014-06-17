@@ -26,6 +26,8 @@
     ],
     "refresh": 6000,
     "translate": {
-        "Bosnia & Herzegovina": "Bosnia"
+        "Bosnia & Herzegovina": "Bosnia",
+        "EEUU": "USA",
+        "Republic of Korea": "SouthKorea"
     }
 }
