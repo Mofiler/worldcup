@@ -51,6 +51,9 @@ function apply(score, cb) {
     var visited = 0;
     var processed = 0;
     
+    if (!score || !score.livescore || !score.livescore.league)
+        return;
+    
     score.livescore.league.forEach(function (league) {
         league.match.forEach(function (mtch) {
             var local = mtch.home[0].$.name;
