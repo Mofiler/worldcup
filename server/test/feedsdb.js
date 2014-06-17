@@ -134,3 +134,8 @@ exports['load matches list and apply feed world cup data'] = function (test) {
         matches.getList(next);
     }
 };
+
+exports["Close database"] = function (test) {
+    db.close();
+    test.done();
+};

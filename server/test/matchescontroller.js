@@ -541,7 +541,7 @@ exports['get api history'] = function (test) {
         { local: 'spain', away: 'brazil', date: '20140612' },
         { local: 'argentina', away: 'brazil', date: '20140613', time: '1800' },
         { local: 'uruguay', away: 'chile', date: '20140613', time: '2000' },
-        { local: 'bosnia', away: 'germany', date: '20140613', finished: true }
+        { local: 'bosnia', away: 'germany', date: '20140613', finished: true, match: '1' }
     ];
     
     function clear(data, next) {
@@ -574,6 +574,7 @@ exports['get api history'] = function (test) {
             test.equal(model.items.length, 1);
             test.equal(model.items[0].local, 'bosnia');
             test.equal(model.items[0].away, 'germany');
+            test.equal(model.items[0].match, '1');
             test.done();
         }
     };

@@ -8,6 +8,7 @@
         <estadio><%= item.venue %></estadio>
         <horario><%= item.time %></horario>
         <fecha><%= item.date %></fecha>
+        <numero><%= item.match == null ? "" : item.match %></numero>
     </match>
 <% }); %>
 </matches>
