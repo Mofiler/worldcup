@@ -47,6 +47,15 @@ function read(feedurl, cb) {
     req.end();    
 }
 
+function tryapply(score, cb) {
+    try {
+        apply(score, cb);
+    }
+    catch (ex) {
+        console.log(ex);
+    }
+}
+
 function apply(score, cb) {
     var visited = 0;
     var processed = 0;
@@ -55,6 +64,9 @@ function apply(score, cb) {
         return;
     
     score.livescore.league.forEach(function (league) {
+        if (!league || !league.match)
+            return;
+            
         league.match.forEach(function (mtch) {
             var local = mtch.home[0].$.name;
             if (local)
@@ -147,6 +159,6 @@ function getDate(text) {
 
 module.exports = {
     read: read,
-    apply: apply
+    apply: tryapply
 };
 
