@@ -67,6 +67,8 @@ app.get('/api/match/now', matches.api);
 app.get('/api/match/history', matches.apihistory);
 app.get('/api/match/date/:date', matches.api);
 app.get('/api/match/date/:date/time/:time', matches.api);
+app.get('/api/match/datex/:date', matches.api);
+app.get('/api/match/datex/:date/time/:time', matches.api);
 
 app.get('/feed', feeds.index);
 app.post('/feed', feeds.apply);
@@ -96,8 +98,8 @@ mongodb.openDatabase(config.database, config.mongodb.host, config.mongodb.port, 
     
     http.createServer(app).listen(app.get('port'), function(){
         if (config.refresh)
-            refreshFeed();
-
+            setTimeout(refreshFeed, config.refresh);
+            
         console.log('Express server listening on port ' + app.get('port'));
     });
 });

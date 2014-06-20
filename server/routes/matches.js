@@ -94,7 +94,10 @@ function api(req, res) {
         else {
             res.status(200);
             res.set('Content-Type', 'text/xml');
-            res.render('matchapi', { items: list });
+            if (req.url && req.url.indexOf('datex') >= 0)
+                res.render('matchxapi', { items: list });
+            else
+                res.render('matchapi', { items: list });
         }
     });
 }
@@ -131,11 +134,7 @@ function getMatch(req) {
     entity.time = req.param('time');
     entity.stage = req.param('stage');
     entity.venue = req.param('venue');
-
-    var match = getInteger(req.param('match'));
-    
-    if (match)
-        entity.match = match;
+    entity.match = req.param('match');
         
     entity.finished = req.param('finished') ? true : false;
     

@@ -3,6 +3,7 @@
     <match>
         <<%= item.local %>><%= item.localgoals %></<%= item.local %>>
         <<%= item.away %>><%= item.awaygoals %></<%= item.away %>>
+        <numero><%= item.match == null ? "" : item.match %></numero>
     </match>
 <% }); %>
 </matches>
