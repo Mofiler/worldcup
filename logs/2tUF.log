@@ -1,0 +1,116 @@
+Failed to load c++ bson extension, using pure JS version
+Express server listening on port 3000
+[90mGET /api/match/date/20140620 [32m200 [90m18ms - 22b[0m
+[90mGET /api/team [32m200 [90m13ms - 13.58kb[0m
+[90mGET / [32m200 [90m7ms - 1.73kb[0m
+[90mGET /css/bootstrap.css [36m304 [90m7ms[0m
+[90mGET /css/bootstrap-responsive.css [36m304 [90m5ms[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /css/style.css [36m304 [90m0ms[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m0ms - 22b[0m
+[90mGET /api/team [32m200 [90m8ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m0ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m6ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m0ms - 22b[0m
+[90mGET /api/team [32m200 [90m5ms - 13.58kb[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/match/history [32m200 [90m3ms - 6.94kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m5ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m0ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/team [32m200 [90m6ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m6ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m2ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m0ms - 22b[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/team [32m200 [90m2ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m5ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m2ms - 13.58kb[0m
+[90mGET /api/team [32m200 [90m4ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m2ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/team [32m200 [90m3ms - 13.58kb[0m
+[90mGET /api/match/date/20140620 [32m200 [90m1ms - 22b[0m
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+TypeError: Cannot call method 'forEach' of undefined
+    at /var/www/mfroot/worldcup/server/services/feeds.js:58:22
+    at Array.forEach (native)
+    at Object.apply (/var/www/mfroot/worldcup/server/services/feeds.js:57:28)
+    at /var/www/mfroot/worldcup/server/app.js:115:16
+    at /var/www/mfroot/worldcup/server/services/feeds.js:43:63
+    at Parser.<anonymous> (/var/www/mfroot/worldcup/server/node_modules/xml2js/lib/xml2js.js:379:20)
+    at Parser.EventEmitter.emit (events.js:95:17)
+    at Object.onclosetag (/var/www/mfroot/worldcup/server/node_modules/xml2js/lib/xml2js.js:343:26)
+    at emit (/var/www/mfroot/worldcup/server/node_modules/xml2js/node_modules/sax/lib/sax.js:615:33)
+    at emitNode (/var/www/mfroot/worldcup/server/node_modules/xml2js/node_modules/sax/lib/sax.js:620:3)
+error: Forever detected script exited with code: 8
+error: Script restart attempt #1
+Failed to load c++ bson extension, using pure JS version
+Express server listening on port 3000
+
+events.js:72
+        throw er; // Unhandled 'error' event
+              ^
+TypeError: Cannot call method 'forEach' of undefined
+    at /var/www/mfroot/worldcup/server/services/feeds.js:58:22
+    at Array.forEach (native)
+    at Object.apply (/var/www/mfroot/worldcup/server/services/feeds.js:57:28)
+    at /var/www/mfroot/worldcup/server/app.js:115:16
+    at /var/www/mfroot/worldcup/server/services/feeds.js:43:63
+    at Parser.<anonymous> (/var/www/mfroot/worldcup/server/node_modules/xml2js/lib/xml2js.js:379:20)
+    at Parser.EventEmitter.emit (events.js:95:17)
+    at Object.onclosetag (/var/www/mfroot/worldcup/server/node_modules/xml2js/lib/xml2js.js:343:26)
+    at emit (/var/www/mfroot/worldcup/server/node_modules/xml2js/node_modules/sax/lib/sax.js:615:33)
+    at emitNode (/var/www/mfroot/worldcup/server/node_modules/xml2js/node_modules/sax/lib/sax.js:620:3)
+    at closeTag (/var/www/mfroot/worldcup/server/node_modules/xml2js/node_modules/sax/lib/sax.js:861:5)
+error: Forever detected script exited with code: 8
