@@ -46,6 +46,8 @@ exports['get index'] = function (test) {
             test.ok(model.items[0].time);
             test.ok(model.items[0].venue);
             test.ok(model.items[0].stage);
+            test.ok(model.items[0].match);
+            test.ok(model.items[0].key);
             test.done();
         }
     };
@@ -76,37 +78,15 @@ exports['get view'] = function (test) {
             test.ok(model.item.time);
             test.ok(model.item.venue);
             test.ok(model.item.stage);
+            
+            test.equal(model.item.match, "match1");
+            test.equal(model.item.key, 1);
+            
             test.done();
         }
     };
     
     controller.view(req, res);
-};
-
-exports['post add'] = function (test) {
-    test.async();
-    
-    var req = {};
-    var res = {
-        render: function (viewname, model) {
-            test.ok(viewname);
-            test.equal(viewname, 'matchnew');
-            test.ok(model);
-            test.equal(model.title, 'New Match');
-
-            test.ok(model.stages);
-            test.ok(Array.isArray(model.stages));
-            test.equal(model.stages.length, config.stages.length);
-            
-            config.stages.forEach(function (stage) {
-                test.ok(model.stages.indexOf(stage) >= 0);
-            });
-            
-            test.done();
-        }
-    };
-    
-    controller.add(req, res);
 };
 
 exports['get create'] = function (test) {
@@ -144,7 +124,9 @@ exports['post add'] = function (test) {
         date: 'Date',
         time: 'Time',
         venue: 'Venue',
-        stage: 'Stage'
+        stage: 'Stage',
+        match: 'Match 1',
+        key: '2'
     }
     
     var req = {
@@ -175,7 +157,8 @@ exports['post add'] = function (test) {
                 test.equal(item.time, form.time);
                 test.equal(item.venue, form.venue);
                 test.equal(item.finished, false);
-                test.equal(item.match, null);
+                test.equal(item.match, 'Match 1');
+                test.equal(item.key, 2);
                 
                 test.done();
             });

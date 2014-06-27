@@ -72,7 +72,7 @@ function processMatchTeam(teams, teamname, match, islocal) {
             team.nextmatch = match;
     }
     
-    var nmatch = match.match || 0;
+    var nmatch = match.key || 0;
     
     if (nmatch && match.stage == 'Second Round')
         if (islocal)

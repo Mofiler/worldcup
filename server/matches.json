@@ -8,6 +8,8 @@
         "time": "2000",
         "stage": "Group A",
         "venue": "Arena Corinthians",
+        "match": "match1",
+        "key": 1,
         "finished": true
     },
     {
