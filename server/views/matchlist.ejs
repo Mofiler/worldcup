@@ -17,6 +17,7 @@
         <th>Stage</th>
         <th>Venue</th>
         <th>Match #</th>
+        <th>Key #</th>
         <th>Finished</th>
     </tr>
 <% items.forEach(function (item) { %>
@@ -31,6 +32,7 @@
         <td><%= item.stage %></td>
         <td><%= item.venue %></td>
         <td><%= item.match || "" %></td>
+        <td><%= item.key || "" %></td>
         <td><%= item.finished ? "Yes" : "No" %></td>
     </tr>
 <% }); %>
