@@ -135,6 +135,11 @@ function getMatch(req) {
     entity.stage = req.param('stage');
     entity.venue = req.param('venue');
     entity.match = req.param('match');
+    
+    var key = getInteger(req.param('key'));
+    
+    if (key != null)
+        entity.key = key;
         
     entity.finished = req.param('finished') ? true : false;
     
